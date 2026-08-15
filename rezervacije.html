@@ -396,8 +396,8 @@
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_subject" value="Nova rezervacija — Pajin Salaš">
-          <!-- ZAMENI adresom svoje stranice zahvalnice kad je postaviš: -->
-          <input type="hidden" name="_next" value="https://pajinsalas.rs/hvala.html">
+          <!-- Kad napraviš hvala.html, otkomentariši red ispod i upiši pravu adresu:
+          <input type="hidden" name="_next" value="https://tvoj-domen.rs/hvala.html"> -->
           <!-- Zamka za botove: ljudi ovo polje ne vide -->
           <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -800,60 +800,38 @@
   /* ---- Izbor stola ---- */
   tables.forEach(function (t) {
     t.addEventListener('click', function () {
-      if (t.disabled) return;
       tables.forEach(function (x) { x.classList.remove('selected'); x.setAttribute('aria-pressed', 'false'); });
       t.classList.add('selected');
       t.setAttribute('aria-pressed', 'true');
       stoInput.value = t.dataset.table;
       setSlip('slip-sto', 'Sto ' + t.dataset.table);
       greska.classList.remove('is-visible');
+      updateHint();
     });
   });
 
-  /* ---- Filtriranje po broju osoba ---- */
-  function filterTables() {
+  /* ---- Poruka o kapacitetu (stolovi ostaju uvek klikabilni) ---- */
+  function updateHint() {
     var need = parseInt(osobaSel.value, 10);
-
-    if (!need) {
-      tables.forEach(function (t) { t.disabled = false; });
-      hint.innerHTML = '<strong>Savet:</strong> prvo unesite broj osoba u formu — prikazaćemo samo stolove koji vam odgovaraju.';
-      return;
-    }
+    var sel  = document.querySelector('.tbl.selected');
 
     if (need >= 9) {
-      tables.forEach(function (t) {
-        t.disabled = true;
-        t.classList.remove('selected');
-        t.setAttribute('aria-pressed', 'false');
-      });
-      stoInput.value = '';
-      setSlip('slip-sto', '');
-      hint.innerHTML = '<strong>Za društvo od 9 i više osoba</strong> spajamo stolove, pa raspored dogovaramo telefonom. Pošaljite zahtev bez izbora stola ili nas pozovite na <a href="tel:+381641305870">064 130 5870</a>.';
+      hint.innerHTML = '<strong>Za devet i više osoba</strong> spajamo stolove, pa raspored dogovaramo telefonom. Slobodno pošaljite zahtev — javićemo se.';
       return;
     }
 
-    var available = 0;
-    tables.forEach(function (t) {
-      var fits = parseInt(t.dataset.seats, 10) >= need;
-      t.disabled = !fits;
-      if (!fits && t.classList.contains('selected')) {
-        t.classList.remove('selected');
-        t.setAttribute('aria-pressed', 'false');
-        stoInput.value = '';
-        setSlip('slip-sto', '');
-      }
-      if (fits) available++;
-    });
+    if (sel && need && parseInt(sel.dataset.seats, 10) < need) {
+      hint.innerHTML = '<strong>Napomena:</strong> izabrani sto je manji nego što vam treba. Nije problem — spojićemo stolove ili vam predložiti drugi.';
+      return;
+    }
 
-    hint.innerHTML = '<strong>' + available + ' stolova</strong> odgovara društvu od ' + need +
-                     ' ' + (need === 1 ? 'osobe' : (need < 5 ? 'osobe' : 'osoba')) +
-                     '. Ostali su zatamnjeni jer nemaju dovoljno mesta.';
+    hint.innerHTML = '<strong>Savet:</strong> kliknite na sto koji vam odgovara. Ako niste sigurni, pošaljite zahtev bez izbora — mi ćemo vam naći najbolje mesto.';
   }
 
   osobaSel.addEventListener('change', function () {
     var n = osobaSel.value;
     setSlip('slip-osoba', n ? (n === '9' ? '9+' : n) : '');
-    filterTables();
+    updateHint();
   });
 
   datumInp.addEventListener('change', function () { setSlip('slip-datum', formatDatum(datumInp.value)); });
@@ -866,18 +844,11 @@
                  String(today.getDate()).padStart(2, '0');
 
   /* ---- Validacija pre slanja ---- */
-  forma.addEventListener('submit', function (e) {
-    var need = parseInt(osobaSel.value, 10);
-    if (!stoInput.value && need && need < 9) {
-      e.preventDefault();
-      greska.textContent = 'Izaberite sto na rasporedu pored, pa pošaljite zahtev.';
-      greska.classList.add('is-visible');
-      document.querySelector('.card--map').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    if (!stoInput.value) stoInput.value = 'Bez izbora — dogovor telefonom';
+  forma.addEventListener('submit', function () {
+    if (!stoInput.value) stoInput.value = 'Bez izbora — neka salaš predloži';
   });
 
+  updateHint();
   showZone('unutra');
 })();
 </script>
