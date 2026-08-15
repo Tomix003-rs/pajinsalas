@@ -3,12 +3,262 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pajin Salaš | Čenej</title>
+  <title>Pajin Salaš | Domaća kuhinja i tamburaši na Čeneju kod Novog Sada</title>
+  <meta name="description" content="Pajin Salaš na Čeneju kod Novog Sada — autentičan vojvođanski ambijent, domaća kuhinja sa žara i sača, tamburaši. Rezervišite sto na 064 130 5870.">
 
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="stylesheader.css">
   <link rel="stylesheet" href="styleshero.css">
   <link rel="icon" href="logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       PAJIN SALAŠ — POČETNA
+       Ista paleta kao stranica rezervacija: njiva, žito, hartija.
+       ============================================================ */
+    :root{
+      --field-dark:#22331f;
+      --field:#2f4f36;
+      --field-light:#3d6446;
+      --wheat:#c29a4b;
+      --wheat-light:#d9b768;
+      --paper:#f4f1e9;
+      --panel:#fdfcf8;
+      --ink:#1a1f1a;
+      --muted:#767a73;
+      --line:rgba(47,79,54,.12);
+      --shadow:0 8px 40px rgba(21,31,24,.09);
+      --r-xl:24px; --r-lg:18px; --r-md:12px;
+    }
+
+    body{
+      font-family:'Karla', ui-sans-serif, system-ui, sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      margin:0;
+    }
+
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--wheat);
+      outline-offset:3px;
+      border-radius:8px;
+    }
+
+    /* ---- Usklađivanje postojećeg headera i footera ----
+       Ako ti se ne sviđa, obriši ovaj blok i vraća se stari izgled. */
+    .header{background:var(--field-dark);border-bottom:1px solid rgba(255,255,255,.07);}
+    .header .logo__title{font-family:'Fraunces',Georgia,serif;color:#fff;}
+    .header .logo__subtitle{color:rgba(255,255,255,.55);}
+    .header .nav a{color:var(--wheat);font-weight:700;}
+    .header .nav a:hover{color:var(--wheat-light);}
+    .header .btn-reserve{background:var(--wheat);color:#1a1209;border-radius:999px;padding:11px 20px;font-weight:700;}
+    .footer{background:var(--field-dark);color:rgba(255,255,255,.7);}
+    .footer h4{font-family:'Fraunces',Georgia,serif;color:#fff;}
+    .footer a:hover{color:var(--wheat-light);}
+
+    /* ---- HERO: jedina slika na stranici ---- */
+    .hero{
+      position:relative;
+      margin:0;
+      padding:0;
+      min-height:clamp(440px, 74vh, 660px);
+      display:flex;
+      align-items:flex-end;
+      background-image:
+        linear-gradient(to bottom, rgba(20,28,18,.34) 0%, rgba(20,28,18,.12) 34%, rgba(20,28,18,.82) 100%),
+        url('1.jpg');
+      background-size:cover;
+      background-position:center 55%;
+    }
+
+    .hero__inner{
+      width:min(1180px, calc(100% - 40px));
+      margin:0 auto;
+      padding:0 0 56px;
+      color:#fff;
+    }
+
+    .hero__eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 14px;border-radius:999px;
+      background:rgba(194,154,75,.18);
+      border:1px solid rgba(194,154,75,.4);
+      backdrop-filter:blur(6px);
+      font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:#f0dcb2;margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-family:'Fraunces',Georgia,serif;
+      font-weight:700;
+      font-size:clamp(38px, 7vw, 76px);
+      line-height:.98;
+      letter-spacing:-.025em;
+      margin:0 0 16px;
+      text-shadow:0 2px 24px rgba(0,0,0,.4);
+    }
+
+    .hero__lead{
+      font-size:clamp(16px, 2.1vw, 19px);
+      line-height:1.6;
+      color:rgba(255,255,255,.9);
+      max-width:44ch;
+      margin:0 0 28px;
+      text-shadow:0 1px 12px rgba(0,0,0,.45);
+    }
+
+    .hero__actions{display:flex;gap:12px;flex-wrap:wrap;}
+
+    .pbtn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:15px 28px;border-radius:999px;
+      font-size:15.5px;font-weight:700;text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .pbtn--gold{background:var(--wheat);color:#1a1209;box-shadow:0 6px 22px rgba(194,154,75,.36);}
+    .pbtn--gold:hover{background:var(--wheat-light);transform:translateY(-2px);}
+    .pbtn--glass{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.4);backdrop-filter:blur(8px);}
+    .pbtn--glass:hover{background:rgba(255,255,255,.24);transform:translateY(-2px);}
+    .pbtn--green{background:var(--field);color:#fff;box-shadow:0 6px 20px rgba(47,79,54,.26);}
+    .pbtn--green:hover{background:var(--field-light);transform:translateY(-2px);}
+
+    /* ---- Sekcije ---- */
+    .band{padding:76px 0;}
+    .band--paper{background:var(--paper);}
+    .band--panel{background:var(--panel);}
+    .band__inner{width:min(1180px, calc(100% - 40px));margin:0 auto;}
+
+    .band__head{text-align:center;max-width:640px;margin:0 auto 44px;}
+    .band__kicker{
+      font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--wheat);margin:0 0 10px;
+    }
+    .band__title{
+      font-family:'Fraunces',Georgia,serif;
+      font-size:clamp(28px,4.2vw,42px);
+      line-height:1.06;letter-spacing:-.02em;margin:0 0 12px;
+    }
+    .band__lead{color:var(--muted);font-size:16px;line-height:1.65;margin:0;}
+
+    /* ---- Utisci (slajder sa slikama recenzija) ---- */
+    .rev{max-width:900px;margin:0 auto;}
+
+    .rev__stage{
+      position:relative;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--r-xl);
+      box-shadow:var(--shadow);
+      padding:20px;
+      display:flex;align-items:center;justify-content:center;
+      min-height:280px;
+    }
+    .band--panel .rev__stage{background:var(--paper);}
+
+    .rev__stage img{
+      max-width:100%;
+      max-height:520px;
+      width:auto;height:auto;
+      display:block;
+      border-radius:var(--r-md);
+      transition:opacity .28s ease;
+    }
+    .rev__stage img.is-fading{opacity:0;}
+
+    .rev__btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:46px;height:46px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:rgba(255,255,255,.94);
+      color:var(--field);
+      font-size:17px;line-height:1;
+      cursor:pointer;
+      box-shadow:0 4px 16px rgba(21,31,24,.14);
+      transition:.18s ease;
+      z-index:2;
+    }
+    .rev__btn:hover{background:var(--field);color:#fff;border-color:var(--field);}
+    .rev__btn--prev{left:-22px;}
+    .rev__btn--next{right:-22px;}
+
+    .rev__foot{
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      margin-top:20px;flex-wrap:wrap;
+    }
+    .rev__dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;}
+    .rev__dot{
+      width:8px;height:8px;border-radius:50%;padding:0;
+      border:none;background:rgba(47,79,54,.22);cursor:pointer;transition:.18s ease;
+    }
+    .rev__dot:hover{background:rgba(47,79,54,.45);}
+    .rev__dot.is-active{background:var(--wheat);width:22px;border-radius:999px;}
+
+    .rev__count{
+      font-size:12.5px;font-weight:700;letter-spacing:.06em;
+      color:var(--muted);min-width:56px;text-align:center;
+    }
+
+    .reviews-cta{text-align:center;margin-top:32px;}
+
+    @media (max-width:1000px){
+      .rev__btn--prev{left:6px;}
+      .rev__btn--next{right:6px;}
+    }
+    @media (max-width:600px){
+      .rev__stage{padding:12px;min-height:220px;}
+      .rev__stage img{max-height:420px;}
+      .rev__btn{width:38px;height:38px;font-size:15px;}
+    }
+
+    /* ---- Lokacija ---- */
+    .loc{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:stretch;}
+    .loc__info{
+      background:var(--panel);border:1px solid var(--line);
+      border-radius:var(--r-xl);padding:32px;box-shadow:var(--shadow);
+    }
+    .loc__info h2{
+      font-family:'Fraunces',Georgia,serif;font-size:28px;
+      letter-spacing:-.02em;margin:0 0 22px;
+    }
+    .loc__row{margin-bottom:20px;}
+    .loc__row dt{
+      font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--wheat);margin-bottom:5px;
+    }
+    .loc__row dd{margin:0;font-size:16px;line-height:1.6;color:var(--ink);}
+    .loc__row dd a{color:var(--ink);text-decoration:none;}
+    .loc__row dd a:hover{color:var(--field);text-decoration:underline;}
+
+    .loc__map{
+      border-radius:var(--r-xl);overflow:hidden;
+      border:1px solid var(--line);box-shadow:var(--shadow);
+      min-height:420px;
+    }
+    .loc__map iframe{width:100%;height:100%;display:block;border:0;}
+
+    /* ---- Responsive ---- */
+    @media (max-width:900px){
+      .loc{grid-template-columns:1fr;}
+      .loc__map{min-height:320px;}
+      .band{padding:56px 0;}
+    }
+
+    @media (max-width:600px){
+      .hero{min-height:clamp(400px,68vh,520px);background-position:center 50%;}
+      .hero__inner{padding-bottom:38px;}
+      .hero__actions .pbtn{flex:1;min-width:140px;padding:14px 18px;}
+      .loc__info{padding:24px 20px;}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none !important;}
+    }
+  </style>
 </head>
 <body>
 
@@ -16,7 +266,7 @@
     <div class="container header__wrapper">
 
       <div class="logo">
-        <img src="logo.jpg" alt="Pajin Salaš logo" class="logo__img">
+        <img src="logo.jpg" alt="Pajin Salaš logo" class="logo__img" width="120" height="120">
         <div>
           <div class="logo__title">Pajin Salaš</div>
           <div class="logo__subtitle">Čenej • Novi Sad</div>
@@ -24,104 +274,129 @@
       </div>
 
       <nav class="nav">
-        <a href="#o-nama">Utisci</a>
+        <a href="meni.html">Meni</a>
         <a href="rezervacije.html">Rezerviši</a>
-        <a href="galerija.html">Meni</a>
+        <a href="#utisci">Utisci</a>
         <a href="#lokacija">Lokacija</a>
       </nav>
 
-      <a class="btn-reserve" href="tel:+381641305870">
-        <b>Nazovi</b>
-      </a>
+      <a class="btn-reserve" href="tel:+381641305870"><b>Nazovi</b></a>
 
     </div>
   </header>
 
   <main>
 
+    <!-- ====== HERO — jedina slika na stranici (1.jpg) ====== -->
     <section class="hero">
-      <div class="hero-text">
-        <h1 style="text-align:center;">Pajin Salaš</h1>
-        <p style="text-align:center;">
-          Autentičan vojvođanski ambijent, domaća kuhinja i tamburaši.
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Čenej • Novi Sad • od 1946.</p>
+        <h1>Pajin Salaš</h1>
+        <p class="hero__lead">
+          Domaća kuhinja sa žara i sača, tamburaši i pravi vojvođanski ambijent —
+          petnaest minuta od centra Novog Sada.
         </p>
+        <div class="hero__actions">
+          <a class="pbtn pbtn--gold" href="rezervacije.html">Rezerviši sto</a>
+          <a class="pbtn pbtn--glass" href="meni.html">Pogledaj meni</a>
+        </div>
       </div>
-
-      <img
-        
-        src="1.jpg"
-       
-        style="width: 100%; max-width: 900px; height: 500px; object-fit: cover; display: block; margin: 0 auto;"
-      >
     </section>
 
-    <section id="o-nama" class="section reviews-block">
-      <div class="container">
 
-        <h2 style="text-align:center;">Utisci gostiju</h2>
+    <!-- ====== Utisci gostiju ====== -->
+    <section id="utisci" class="band band--paper">
+      <div class="band__inner">
 
-        <p style="text-align:center; max-width:700px; margin:0 auto 30px; color:#6b665c;">
-          Iskustva naših gostiju govore najbolje o atmosferi, usluzi i ukusu koji Pajin Salaš nudi.
-        </p>
+        <div class="band__head">
+          <p class="band__kicker">Utisci gostiju</p>
+          <h2 class="band__title">Šta kažu oni koji su bili</h2>
+          <p class="band__lead">
+            Iskustva naših gostiju govore najbolje o atmosferi, usluzi i ukusu.
+          </p>
+        </div>
 
-        <div class="review-slider">
-          <button class="review-btn prev">&#10094;</button>
+        <div class="rev">
+          <div class="rev__stage">
+            <button class="rev__btn rev__btn--prev" type="button" aria-label="Prethodna recenzija">&#10094;</button>
 
-          <div class="review-container">
-            <img id="reviewSlider" src="IMG_1333.jpg" alt="Recenzija gostiju za Pajin Salaš">
+            <img id="revImg" src="IMG_1333.jpg" alt="Recenzija gosta o Pajinom Salašu" decoding="async">
+
+            <button class="rev__btn rev__btn--next" type="button" aria-label="Sledeća recenzija">&#10095;</button>
           </div>
 
-          <button class="review-btn next">&#10095;</button>
+          <div class="rev__foot">
+            <div class="rev__dots" id="revDots" role="tablist" aria-label="Izbor recenzije"></div>
+            <div class="rev__count" id="revCount">1 / 12</div>
+          </div>
+        </div>
+
+          <button class="review-btn next" type="button" aria-label="Sledeća recenzija">&#10095;</button>
+        </div>
+
+        <div class="reviews-cta">
+          <a class="pbtn pbtn--green"
+             href="https://www.google.com/maps?q=Pajin+Salaš+Čenej"
+             target="_blank" rel="noopener">Pročitaj sve recenzije</a>
         </div>
 
       </div>
     </section>
 
-    <section id="lokacija" class="location-section">
-      <div class="container location-grid">
+    <!-- ====== Lokacija ====== -->
+    <section id="lokacija" class="band band--panel">
+      <div class="band__inner">
 
-        <div class="location-info">
-          <h2>Lokacija i kontakt</h2>
-
-          <p>
-            <strong>Adresa:</strong><br>
-            Međunarodni put 325<br>
-            Čenej, Novi Sad
+        <div class="band__head">
+          <p class="band__kicker">Kako do nas</p>
+          <h2 class="band__title">Lokacija i kontakt</h2>
+          <p class="band__lead">
+            Na Međunarodnom putu kroz Čenej, oko petnaest minuta vožnje od centra Novog Sada.
           </p>
-
-          <p>
-            <strong>Telefon:</strong><br>
-            064-1305870<br>
-            063 719 6866
-          </p>
-
-          <p>
-            <strong>Radno vreme:</strong><br>
-            Ponedeljak – Nedelja<br>
-            09:00 – 23:00
-          </p>
-
-          <a
-            class="btn btn--primary"
-            href="https://www.google.com/maps?q=Međunarodni+put+325+Čenej"
-            target="_blank"
-          >
-            Otvori u Google Maps
-          </a>
         </div>
 
-        <div class="location-map">
-          <iframe
-            src="https://www.google.com/maps?q=Međunarodni+put+325+Čenej&output=embed"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            loading="lazy">
-          </iframe>
-        </div>
+        <div class="loc">
 
+          <div class="loc__info">
+            <h2>Pajin Salaš</h2>
+
+            <dl>
+              <div class="loc__row">
+                <dt>Adresa</dt>
+                <dd>Međunarodni put 325<br>Čenej, Novi Sad</dd>
+              </div>
+
+              <div class="loc__row">
+                <dt>Telefon</dt>
+                <dd>
+                  <a href="tel:+381641305870">064 130 5870</a><br>
+                  <a href="tel:+381637196866">063 719 6866</a>
+                </dd>
+              </div>
+
+              <div class="loc__row">
+                <dt>Radno vreme</dt>
+                <dd>Ponedeljak – Nedelja<br>09:00 – 23:00</dd>
+              </div>
+            </dl>
+
+            <a class="pbtn pbtn--green"
+               href="https://www.google.com/maps?q=Međunarodni+put+325+Čenej"
+               target="_blank" rel="noopener">Otvori u Google Maps</a>
+          </div>
+
+          <div class="loc__map">
+            <iframe
+              src="https://www.google.com/maps?q=Međunarodni+put+325+Čenej&output=embed"
+              title="Mapa — Pajin Salaš, Međunarodni put 325, Čenej"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+        </div>
       </div>
     </section>
+
 
   </main>
 
@@ -136,8 +411,8 @@
 
       <div class="footer-col">
         <h4>Kontakt</h4>
-        <p>064-1305870</p>
-        <p>063 719 6866</p>
+        <p><a href="tel:+381641305870">064 130 5870</a></p>
+        <p><a href="tel:+381637196866">063 719 6866</a></p>
         <p>Međunarodni put 325</p>
       </div>
 
@@ -147,8 +422,8 @@
         <p>09:00 – 23:00</p>
 
         <div class="footer-social">
-          <a href="https://www.instagram.com/pajinsalas/" target="_blank">Instagram</a>
-          <a href="https://www.facebook.com/pajinsalas" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/pajinsalas/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/pajinsalas" target="_blank" rel="noopener">Facebook</a>
         </div>
       </div>
 
@@ -159,26 +434,69 @@
     </div>
   </footer>
 
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const heroImg = document.getElementById("heroSlider");
-      if (!heroImg) return;
+  (function () {
+    var SLIKE = [
+      'IMG_1333.jpg','IMG_1334.jpg','IMG_1335.jpg','IMG_1336.jpg',
+      'IMG_1337.jpg','IMG_1338.jpg','IMG_1339.jpg','IMG_1340.jpg',
+      'IMG_1341.jpg','IMG_1342.jpg','IMG_1343.jpg','IMG_1344.jpg'
+    ];
 
-      const heroImages = [
-        "1.jpg",
-        "2.jpeg",
-        "3.jpeg",
-        "4.jpeg",
-        "5.jpeg"
-      ];
+    var img   = document.getElementById('revImg');
+    var dots  = document.getElementById('revDots');
+    var count = document.getElementById('revCount');
+    if (!img) return;
 
-      let currentHero = 0;
+    var i = 0;
 
-      setInterval(() => {
-        currentHero = (currentHero + 1) % heroImages.length;
-        heroImg.src = heroImages[currentHero];
-      }, 5000);
+    SLIKE.forEach(function (_, n) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'rev__dot' + (n === 0 ? ' is-active' : '');
+      d.setAttribute('aria-label', 'Recenzija ' + (n + 1));
+      d.addEventListener('click', function () { idi(n); });
+      dots.appendChild(d);
     });
+
+    // Unapred učitaj sledeću sliku da nema treperenja
+    SLIKE.forEach(function (src) { var p = new Image(); p.src = src; });
+
+    function idi(n) {
+      i = (n + SLIKE.length) % SLIKE.length;
+      img.classList.add('is-fading');
+      setTimeout(function () {
+        img.src = SLIKE[i];
+        img.alt = 'Recenzija gosta o Pajinom Salašu ' + (i + 1) + ' od ' + SLIKE.length;
+        img.classList.remove('is-fading');
+      }, 180);
+      count.textContent = (i + 1) + ' / ' + SLIKE.length;
+      dots.querySelectorAll('.rev__dot').forEach(function (d, n2) {
+        d.classList.toggle('is-active', n2 === i);
+      });
+    }
+
+    document.querySelector('.rev__btn--prev').addEventListener('click', function () { idi(i - 1); });
+    document.querySelector('.rev__btn--next').addEventListener('click', function () { idi(i + 1); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  idi(i - 1);
+      if (e.key === 'ArrowRight') idi(i + 1);
+    });
+
+    // Prevlačenje prstom na telefonu
+    var x0 = null;
+    var stage = document.querySelector('.rev__stage');
+    stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var d = e.changedTouches[0].clientX - x0;
+      if (Math.abs(d) > 45) idi(d < 0 ? i + 1 : i - 1);
+      x0 = null;
+    }, { passive: true });
+
+    count.textContent = '1 / ' + SLIKE.length;
+  })();
   </script>
 
   <script src="app.js"></script>

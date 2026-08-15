@@ -3,1102 +3,884 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rezervacija stola | Pajin Salaš</title>
-<link rel="icon" href="logo.jpg">
+  <title>Rezervacija stola | Pajin Salaš — Čenej, Novi Sad</title>
+  <meta name="description" content="Rezervišite sto na Pajinom Salašu na Čeneju kod Novog Sada. Izaberite zonu i konkretan sto na vizuelnom rasporedu ili pozovite 064 130 5870.">
+  <link rel="icon" href="logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ============================================================
+       PAJIN SALAŠ — REZERVACIJA
+       Paleta: njiva, žito, hartija. Ista kao ostatak sajta.
+       ============================================================ */
     :root{
-      --primary:#2F4F36;
-      --primary-dark:#243b29;
-      --secondary:#c29a4b;
-      --bg:#f4f6ef;
-      --panel:#fcfcf8;
-      --panel-2:#f7f8f2;
-      --text:#1f241f;
-      --muted:#6e746b;
-      --line:rgba(47,79,54,.10);
-      --shadow:0 24px 60px rgba(21,31,24,.10);
-      --shadow-soft:0 10px 30px rgba(21,31,24,.08);
-      --radius-xl:28px;
-      --radius-lg:22px;
-      --radius-md:16px;
+      --field-dark:#22331f;      /* tamna njiva */
+      --field:#2f4f36;           /* zelena */
+      --field-light:#3d6446;
+      --wheat:#c29a4b;           /* žito / zlatna */
+      --wheat-light:#d9b768;
+      --paprika:#b3341f;         /* akcent za akciju */
+      --paper:#f4f1e9;
+      --panel:#fdfcf8;
+      --ink:#1a1f1a;
+      --muted:#767a73;
+      --line:rgba(47,79,54,.12);
+      --shadow:0 8px 40px rgba(21,31,24,.09);
+      --shadow-lift:0 14px 44px rgba(21,31,24,.16);
+      --r-xl:24px; --r-lg:18px; --r-md:12px;
       --container:1320px;
     }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(194,154,75,.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(47,79,54,.08), transparent 24%),
-        var(--bg);
-      color:var(--text);
+      font-family:'Karla', ui-sans-serif, system-ui, sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      min-height:100vh;
+      padding-bottom:0;
     }
-
     button,input,select,textarea{font:inherit}
     a{text-decoration:none;color:inherit}
 
-    .container{
-      width:min(var(--container), calc(100% - 40px));
-      margin:0 auto;
+    .container{width:min(var(--container), calc(100% - 40px));margin:0 auto;}
+
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible{
+      outline:3px solid var(--wheat);
+      outline-offset:2px;
+      border-radius:8px;
     }
 
+    /* ---------- Header ---------- */
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(16px);
-      background:rgba(47,79,54,.94);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      position:sticky;top:0;z-index:50;
+      background:var(--field-dark);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
+    .topbar__inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .brand__title{font-family:'Fraunces',Georgia,serif;color:#fff;font-weight:700;font-size:20px;letter-spacing:-.01em;}
+    .brand__subtitle{color:rgba(255,255,255,.55);font-size:12px;font-weight:500;margin-top:2px;}
 
-    .topbar__inner{
-      min-height:82px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
+    .topnav{display:flex;gap:4px;}
+    .topnav a{
+      color:rgba(255,255,255,.72);font-size:14px;font-weight:600;
+      padding:8px 14px;border-radius:999px;transition:.18s ease;
     }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
-
-    .brand__title{
-      color:#fff;
-      font-weight:800;
-      font-size:22px;
-      letter-spacing:-.03em;
-    }
-
-    .brand__subtitle{
-      color:rgba(255,255,255,.78);
-      font-size:13px;
-      font-weight:500;
-    }
-
-    .topbar__actions{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .topnav a:hover{color:#fff;background:rgba(255,255,255,.07);}
+    .topnav a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.12);}
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:none;
-      cursor:pointer;
-      border-radius:999px;
-      padding:13px 20px;
-      transition:.2s ease;
-      font-weight:700;
-      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      border:none;cursor:pointer;border-radius:999px;
+      padding:11px 20px;font-size:14px;font-weight:700;transition:.18s ease;
     }
+    .btn--gold{background:var(--wheat);color:#1a1209;box-shadow:0 4px 16px rgba(194,154,75,.28);}
+    .btn--gold:hover{filter:brightness(1.06);transform:translateY(-1px);}
 
-    .btn--ghost{
-      color:#fff;
-      background:transparent;
-      border:1px solid rgba(255,255,255,.18);
-    }
-
-    .btn--ghost:hover{
-      background:rgba(255,255,255,.06);
-    }
-
-    .btn--gold{
-      background:var(--secondary);
-      color:#20170c;
-      box-shadow:0 14px 28px rgba(194,154,75,.22);
-    }
-
-    .btn--gold:hover{
-      transform:translateY(-1px);
-      filter:brightness(1.02);
-    }
-
-    .hero{
-      padding:42px 0 24px;
-    }
-
+    /* ---------- Hero ---------- */
+    .hero{padding:28px 0 18px;}
     .hero__card{
-      position:relative;
-      overflow:hidden;
-      border-radius:32px;
-      padding:40px;
-      background:
-        linear-gradient(135deg, rgba(47,79,54,.96), rgba(36,59,41,.94)),
-        url('ambijent/1.JPG') center/cover no-repeat;
-      color:#fff;
-      box-shadow:var(--shadow);
-      min-height:220px;
-      display:flex;
-      align-items:flex-end;
+      position:relative;overflow:hidden;border-radius:28px;padding:38px 40px;
+      background:linear-gradient(135deg,var(--field-dark),var(--field) 92%);
+      color:#fff;box-shadow:var(--shadow);
     }
-
-    .hero__card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.10), transparent 22%),
-        radial-gradient(circle at 85% 30%, rgba(194,154,75,.14), transparent 18%);
+    .hero__card::after{
+      content:"";position:absolute;right:-60px;top:-60px;width:340px;height:340px;
+      border-radius:50%;background:radial-gradient(circle,rgba(194,154,75,.14),transparent 65%);
       pointer-events:none;
     }
-
-    .hero__content{
-      position:relative;
-      z-index:1;
-      max-width:760px;
-    }
-
     .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:12px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      margin-bottom:14px;
+      display:inline-flex;align-items:center;gap:6px;padding:6px 12px;
+      border-radius:999px;background:rgba(194,154,75,.15);border:1px solid rgba(194,154,75,.25);
+      font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+      color:var(--wheat-light);margin-bottom:14px;
     }
-
     .hero h1{
-      margin:0 0 10px;
-      font-size:44px;
-      line-height:1.03;
-      letter-spacing:-.05em;
+      font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,4.4vw,40px);
+      line-height:1.06;letter-spacing:-.02em;margin-bottom:12px;
     }
+    .hero p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.78);max-width:600px;}
 
-    .hero p{
-      margin:0;
-      font-size:17px;
-      line-height:1.7;
-      color:rgba(255,255,255,.88);
-      max-width:650px;
-    }
-
-    .main{
-      padding:10px 0 50px;
-    }
-
-    .booking-layout{
-      display:grid;
-      grid-template-columns: 1.02fr 1.2fr;
-      gap:26px;
-      align-items:start;
-    }
+    /* ---------- Layout ---------- */
+    .main{padding:8px 0 64px;}
+    .booking-layout{display:grid;grid-template-columns:1.05fr 1.2fr;gap:24px;align-items:start;}
 
     .card{
-      background:rgba(255,255,255,.74);
-      border:1px solid var(--line);
-      border-radius:var(--radius-xl);
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
+      background:var(--panel);border:1px solid var(--line);
+      border-radius:var(--r-xl);box-shadow:var(--shadow);padding:32px;
     }
+    .card--map{padding:24px;}
 
-    .form-card{
-      padding:28px;
+    .kicker{
+      font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--wheat);margin-bottom:6px;display:block;
     }
+    .card h2, .card h3{
+      font-family:'Fraunces',Georgia,serif;letter-spacing:-.02em;color:var(--ink);
+    }
+    .card h2{font-size:26px;line-height:1.1;margin-bottom:6px;}
+    .card h3{font-size:22px;margin-bottom:6px;}
+    .lede{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:22px;}
 
-    .section-kicker{
-      display:inline-block;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#6a7269;
-      margin-bottom:8px;
-    }
+    .divider{height:1px;background:var(--line);margin:20px 0;}
 
-    .form-title{
-      margin:0;
-      font-size:30px;
-      line-height:1.08;
-      letter-spacing:-.04em;
-      color:var(--text);
+    /* ---------- Rezervacioni listić (signature) ---------- */
+    .slip{
+      background:linear-gradient(180deg,#fffdf6,#fbf6e9);
+      border:1.5px dashed rgba(194,154,75,.45);
+      border-radius:var(--r-md);
+      padding:16px 18px;margin-bottom:22px;
     }
+    .slip__title{
+      font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:#8a6d2c;margin-bottom:12px;
+    }
+    .slip__rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:12px;}
+    .slip__row dt{font-size:11px;color:var(--muted);font-weight:600;margin-bottom:3px;}
+    .slip__row dd{font-size:14px;font-weight:700;color:var(--field-dark);}
+    .slip__row dd.is-empty{color:#c3bda9;font-weight:500;}
 
-    .form-subtitle{
-      margin:10px 0 24px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:15px;
-      max-width:560px;
-    }
+    /* ---------- Forma ---------- */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .field{display:flex;flex-direction:column;gap:6px;}
+    .field--full{grid-column:1 / -1;}
 
-    .steps{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-bottom:20px;
-    }
-
-    .step{
-      padding:14px;
-      border-radius:18px;
-      background:#f6f8f2;
-      border:1px solid rgba(47,79,54,.08);
-    }
-
-    .step strong{
-      display:block;
-      font-size:13px;
-      margin-bottom:4px;
-      color:var(--primary-dark);
-    }
-
-    .step span{
-      font-size:13px;
-      color:#6e746b;
-      line-height:1.5;
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-
-    .field--full{
-      grid-column:1 / -1;
-    }
-
-    label{
-      font-size:13px;
-      font-weight:700;
-      color:var(--primary-dark);
-    }
+    label{font-size:12px;font-weight:700;color:var(--field-dark);letter-spacing:.02em;}
+    .label-hint{font-weight:500;color:var(--muted);}
 
     input, select, textarea{
-      width:100%;
-      border:1px solid rgba(47,79,54,.12);
-      background:#fcfdf9;
-      color:var(--text);
-      border-radius:16px;
-      padding:15px 16px;
-      outline:none;
-      transition:.2s ease;
+      width:100%;border:1.5px solid var(--line);background:#fff;
+      color:var(--ink);border-radius:var(--r-md);padding:13px 15px;
+      outline:none;font-size:15px;transition:.18s ease;
+      appearance:none;-webkit-appearance:none;
     }
-
-    input:focus, select:focus, textarea:focus{
-      border-color:rgba(194,154,75,.75);
-      box-shadow:0 0 0 4px rgba(194,154,75,.12);
-      background:#fff;
+    input::placeholder{color:#b0b5ae;}
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--wheat);box-shadow:0 0 0 3px rgba(194,154,75,.16);background:#fffdf7;
     }
-
-    textarea{
-      min-height:120px;
-      resize:vertical;
+    input:hover:not(:focus),select:hover:not(:focus),textarea:hover:not(:focus){border-color:rgba(47,79,54,.24);}
+    select{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;
+      padding-right:36px;cursor:pointer;
     }
+    textarea{min-height:92px;resize:vertical;line-height:1.6;}
 
-    .reservation-note{
-      margin-top:16px;
-      border:1px solid rgba(194,154,75,.25);
-      background:#fbf6ea;
-      color:#6a5830;
-      padding:15px 16px;
-      border-radius:16px;
-      font-size:14px;
-      line-height:1.6;
+    .honey{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
+
+    .consent{
+      display:flex;gap:10px;align-items:flex-start;margin-top:16px;
+      font-size:13px;line-height:1.55;color:var(--muted);cursor:pointer;
     }
+    .consent input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--field);}
 
-    .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
+    .note{
+      display:flex;gap:10px;align-items:flex-start;margin-top:16px;
+      border:1px solid rgba(194,154,75,.24);
+      background:linear-gradient(135deg,#fdf8ee,#faf5e8);
+      color:#6a5422;padding:14px 16px;border-radius:var(--r-md);
+      font-size:13px;line-height:1.6;
     }
+    .note svg{flex-shrink:0;width:18px;height:18px;margin-top:1px;opacity:.7;}
 
-    .actions .btn{
-      min-width:210px;
-      padding:15px 22px;
+    .error-msg{
+      display:none;margin-top:14px;padding:13px 16px;border-radius:var(--r-md);
+      background:#fdeeeb;border:1px solid rgba(179,52,31,.25);
+      color:#8c2716;font-size:13.5px;font-weight:600;line-height:1.5;
     }
+    .error-msg.is-visible{display:block;}
 
-    .actions .btn--light{
-      background:#f6f8f2;
-      color:var(--primary-dark);
-      border:1px solid rgba(47,79,54,.10);
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+    .btn--primary{
+      background:var(--field);color:#fff;padding:15px 24px;font-size:15px;
+      border-radius:var(--r-md);box-shadow:0 6px 18px rgba(47,79,54,.26);flex:1;min-width:180px;
     }
-
-    .actions .btn--light:hover{
-      background:#eef2e7;
+    .btn--primary:hover{background:var(--field-light);transform:translateY(-1px);}
+    .btn--outline{
+      background:transparent;color:var(--field);
+      border:1.5px solid rgba(47,79,54,.22);padding:15px 20px;
+      font-size:15px;border-radius:var(--r-md);
     }
+    .btn--outline:hover{background:rgba(47,79,54,.05);border-color:var(--field);}
 
-    .booking-map-card{
-      background:rgba(255,255,255,.74);
-      border:1px solid rgba(47,79,54,.10);
-      border-radius:28px;
-      padding:22px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
-    }
+    /* ---------- Mapa stolova ---------- */
+    .map-head{margin-bottom:16px;}
+    .map-head p{color:var(--muted);font-size:13px;line-height:1.6;}
 
-    .map-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:20px;
-      margin-bottom:18px;
-    }
-
-    .map-kicker{
-      display:inline-block;
-      font-size:12px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#6c7569;
-      margin-bottom:6px;
-    }
-
-    .map-head h3{
-      margin:0;
-      font-size:28px;
-      color:#1f241f;
-      letter-spacing:-.04em;
-    }
-
-    .map-head p{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-      max-width:500px;
-    }
-
-    .map-legend{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:flex-end;
-    }
-
-    .map-legend span{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      background:#f7f8f2;
-      border:1px solid rgba(47,79,54,.10);
-      border-radius:999px;
-      font-size:13px;
-      color:#5e665d;
-      white-space:nowrap;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      display:inline-block;
-    }
-
-    .dot.free{ background:#2F4F36; }
-    .dot.selected-dot{ background:#c29a4b; }
-    .dot.busy{ background:#989898; }
-
-    .zone-tabs{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-bottom:18px;
-    }
-
+    .zone-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;}
     .zone-tab{
-      border:none;
-      border-radius:16px;
-      padding:14px 18px;
-      background:#eef1e8;
-      color:#405042;
-      font-weight:800;
-      cursor:pointer;
-      transition:.2s ease;
+      border:1.5px solid var(--line);border-radius:var(--r-md);
+      padding:12px 14px;background:#f4f3ec;color:#4a5a4c;
+      font-size:13.5px;font-weight:700;cursor:pointer;transition:.18s ease;
+      display:flex;flex-direction:column;gap:2px;align-items:center;
     }
-
+    .zone-tab small{font-weight:500;font-size:11px;opacity:.75;}
+    .zone-tab:hover:not(.active){background:#ecebe2;}
     .zone-tab.active{
-      background:#2F4F36;
-      color:#fff;
-      box-shadow:0 12px 24px rgba(47,79,54,.18);
+      background:var(--field);color:#fff;border-color:var(--field);
+      box-shadow:0 4px 14px rgba(47,79,54,.2);
     }
 
-    .salas-map{ display:none; }
-    .salas-map.active{ display:block; }
+    .salas-map{display:none;}
+    .salas-map.active{display:block;}
 
-    .salas-scene{
-      position:relative;
-      min-height:620px;
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid rgba(47,79,54,.08);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.5);
+    .scene{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);padding:22px 18px;}
+    .scene--inside{background:linear-gradient(180deg,#fff8e8,#f4ead6);}
+    .scene--garden{background:linear-gradient(180deg,#e2ead7,#d4dfc8);}
+    .scene--gazebo{background:radial-gradient(circle,#dce6d2 0%,#cddbc0 55%,#bfcfb0 100%);}
+
+    .scene__label{
+      text-align:center;font-size:11px;font-weight:700;
+      letter-spacing:.09em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:18px;opacity:.75;
     }
 
-    .inside-scene{
-      background:
-        linear-gradient(180deg, rgba(255,248,232,.96), rgba(244,234,214,.92)),
-        radial-gradient(circle at 50% 14%, rgba(255,255,255,.8), transparent 30%);
+    .table-row{display:grid;gap:18px;justify-items:center;align-items:center;margin-bottom:16px;}
+    .table-row:last-child{margin-bottom:0;}
+    .table-row--3{grid-template-columns:repeat(3,1fr);}
+    .table-row--2{grid-template-columns:repeat(2,1fr);}
+
+    .tbl{
+      display:flex;flex-direction:column;align-items:center;gap:7px;
+      border:none;background:transparent;cursor:pointer;padding:14px 10px;
+      border-radius:16px;transition:.18s ease;width:100%;
+    }
+    .tbl:hover:not(:disabled){background:rgba(47,79,54,.06);transform:translateY(-2px);}
+    .tbl.selected{background:rgba(194,154,75,.14);}
+    .tbl:disabled{opacity:.32;cursor:not-allowed;filter:grayscale(.7);}
+
+    .tbl__visual{position:relative;display:flex;align-items:center;justify-content:center;}
+
+    .tbl__surface{
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:700;font-size:13px;letter-spacing:.03em;
+      background:linear-gradient(160deg,var(--field-light) 0%,var(--field) 100%);
+      border:3px solid rgba(255,255,255,.9);
+      box-shadow:0 6px 18px rgba(28,42,31,.22),inset 0 1px 0 rgba(255,255,255,.2);
+      z-index:2;position:relative;transition:.18s ease;
+    }
+    .tbl.selected .tbl__surface{
+      background:linear-gradient(160deg,var(--wheat-light) 0%,var(--wheat) 100%);
+      color:#1e1408;
+      box-shadow:0 8px 22px rgba(194,154,75,.4),inset 0 1px 0 rgba(255,255,255,.25);
     }
 
-    .inside-scene::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, transparent 46%, rgba(96,58,31,.28) 46%, rgba(96,58,31,.28) 54%, transparent 54%),
-        repeating-linear-gradient(135deg, rgba(120,76,44,.07) 0 16px, rgba(160,108,67,.05) 16px 32px);
-      opacity:.85;
-      pointer-events:none;
+    .s-round{width:74px;height:74px;border-radius:50%;}
+    .s-rect{width:98px;height:60px;border-radius:12px;}
+    .s-small{width:78px;height:50px;border-radius:10px;}
+
+    .chair{width:11px;height:19px;background:#7a5438;border-radius:6px;position:absolute;box-shadow:0 3px 8px rgba(0,0,0,.12);}
+    .c-l{left:-17px;top:50%;transform:translateY(-50%);}
+    .c-r{right:-17px;top:50%;transform:translateY(-50%);}
+    .c-t{top:-17px;left:50%;transform:translateX(-50%) rotate(90deg);}
+    .c-b{bottom:-17px;left:50%;transform:translateX(-50%) rotate(90deg);}
+    .c-tl{top:-17px;left:22%;transform:translateX(-50%) rotate(90deg);}
+    .c-tr{top:-17px;right:22%;transform:translateX(50%) rotate(90deg);}
+    .c-bl{bottom:-17px;left:22%;transform:translateX(-50%) rotate(90deg);}
+    .c-br{bottom:-17px;right:22%;transform:translateX(50%) rotate(90deg);}
+
+    .tbl__name{font-size:12.5px;font-weight:700;color:#5f6a5f;letter-spacing:.03em;}
+    .tbl__info{font-size:11px;color:#8e948c;margin-top:1px;}
+    .tbl.selected .tbl__name{color:#8a6d2c;}
+
+    .map-hint{
+      margin-top:14px;padding:12px 14px;
+      background:#eef0e8;border:1px solid var(--line);
+      border-radius:var(--r-md);color:var(--muted);font-size:12.5px;line-height:1.6;
+    }
+    .map-hint strong{color:var(--field-dark);}
+
+    /* ---------- Footer ---------- */
+    .site-footer{background:var(--field-dark);color:rgba(255,255,255,.7);padding:44px 0 0;}
+    .site-footer__inner{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-bottom:32px;}
+    .site-footer h4{font-family:'Fraunces',Georgia,serif;color:#fff;font-size:17px;margin-bottom:10px;}
+    .site-footer p{font-size:14px;line-height:1.8;}
+    .site-footer a:hover{color:var(--wheat-light);}
+    .footer-social{display:flex;gap:14px;margin-top:10px;font-weight:600;font-size:14px;}
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.09);
+      padding:16px 0;text-align:center;font-size:12.5px;color:rgba(255,255,255,.45);
     }
 
-    .garden-scene{
-      background:
-        radial-gradient(circle at 75% 25%, rgba(255,255,255,.35), transparent 20%),
-        linear-gradient(180deg, #dfe8d5 0%, #d4dfc8 100%);
+    /* ---------- Mobilna traka ---------- */
+    .mobile-bar{
+      position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;
+      padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      background:rgba(244,241,233,.97);backdrop-filter:blur(10px);
+      border-top:1px solid var(--line);
     }
+    .mobile-bar .btn{flex:1;padding:14px 12px;border-radius:var(--r-md);}
 
-    .garden-scene::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 82% 20%, rgba(163,176,150,.35) 0 42px, transparent 43px),
-        radial-gradient(circle at 15% 82%, rgba(111,138,96,.22) 0 70px, transparent 71px),
-        repeating-radial-gradient(circle at 50% 52%, rgba(130,120,95,.14) 0 10px, rgba(0,0,0,0) 10px 32px);
-      pointer-events:none;
+    @media (max-width:1180px){.booking-layout{grid-template-columns:1fr;}}
+    @media (max-width:760px){
+      .topnav{display:none;}
+      .site-footer__inner{grid-template-columns:1fr;gap:22px;}
     }
-
-    .gazebo-scene{
-      background:
-        radial-gradient(circle at center, #d9e4cf 0%, #cedbc1 48%, #c0cfb1 100%);
+    @media (max-width:600px){
+      .container{width:min(var(--container),calc(100% - 24px));}
+      .hero__card{padding:26px 20px;}
+      .card{padding:22px 18px;}
+      .form-grid{grid-template-columns:1fr;}
+      .zone-tabs{grid-template-columns:1fr;}
+      .table-row--3{grid-template-columns:repeat(2,1fr);}
+      .s-round{width:62px;height:62px;}
+      .s-rect{width:84px;height:52px;}
+      .s-small{width:68px;height:44px;}
+      .mobile-bar{display:flex;}
+      body{padding-bottom:82px;}
+      .actions .btn--outline{display:none;}
     }
-
-    .gazebo-ring{
-      position:absolute;
-      inset:50%;
-      width:520px;
-      height:520px;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-      background:
-        radial-gradient(circle, rgba(255,255,255,.12) 0 40%, transparent 40%),
-        repeating-radial-gradient(circle, rgba(120,112,91,.16) 0 12px, rgba(0,0,0,0) 12px 36px);
-      box-shadow:inset 0 0 0 6px rgba(255,255,255,.55);
-    }
-
-    .gazebo-tree{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:24px;
-      height:24px;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-      background:#7a8c64;
-      box-shadow:
-        0 -30px 0 10px #8ca16f,
-        0 0 0 10px rgba(122,140,100,.18);
-    }
-
-    .scene-badge{
-      position:absolute;
-      top:18px;
-      z-index:2;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.72);
-      border:1px solid rgba(47,79,54,.08);
-      font-size:12px;
-      font-weight:800;
-      color:#6d736d;
-      backdrop-filter:blur(8px);
-    }
-
-    .badge-left{ left:18px; }
-    .badge-right{ right:18px; }
-
-    .table3d{
-      position:absolute;
-      border:none;
-      background:transparent;
-      cursor:pointer;
-      padding:0;
-      transition:transform .18s ease;
-    }
-
-    .table3d:hover{
-      transform:translateY(-2px) scale(1.02);
-    }
-
-    .table-top{
-      position:relative;
-      z-index:2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      font-weight:800;
-      letter-spacing:.02em;
-      text-shadow:0 1px 2px rgba(0,0,0,.18);
-      box-shadow:
-        0 20px 28px rgba(28,42,31,.18),
-        inset 0 1px 0 rgba(255,255,255,.25);
-      background:
-        linear-gradient(180deg, #3b6445 0%, #2F4F36 100%);
-      border:4px solid rgba(255,255,255,.92);
-    }
-
-    .table3d::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:100%;
-      transform:translateX(-50%);
-      width:18px;
-      height:26px;
-      background:linear-gradient(180deg, #6d4c35 0%, #513422 100%);
-      border-radius:0 0 10px 10px;
-      box-shadow:0 8px 14px rgba(0,0,0,.14);
-    }
-
-    .round .table-top{
-      width:86px;
-      height:86px;
-      border-radius:50%;
-    }
-
-    .rect .table-top{
-      width:118px;
-      height:72px;
-      border-radius:18px;
-    }
-
-    .small-rect .table-top{
-      width:92px;
-      height:60px;
-      border-radius:16px;
-    }
-
-    .table3d.selected .table-top{
-      background:linear-gradient(180deg, #d4b065 0%, #c29a4b 100%);
-      color:#2b2414;
-    }
-
-    .table3d.busy-table{
-      pointer-events:none;
-    }
-
-    .table3d.busy-table .table-top{
-      background:linear-gradient(180deg, #b4b4b4 0%, #949494 100%);
-    }
-
-    .table3d.busy-table::after{
-      background:linear-gradient(180deg, #8d8d8d 0%, #737373 100%);
-    }
-
-    .chairs{
-      position:absolute;
-      inset:-14px;
-      pointer-events:none;
-    }
-
-    .chairs::before,
-    .chairs::after{
-      content:"";
-      position:absolute;
-      background:#6f4a34;
-      border-radius:10px;
-      box-shadow:0 8px 14px rgba(0,0,0,.12);
-    }
-
-    .chairs-2::before{
-      width:18px;
-      height:30px;
-      left:-8px;
-      top:50%;
-      transform:translateY(-50%);
-    }
-
-    .chairs-2::after{
-      width:18px;
-      height:30px;
-      right:-8px;
-      top:50%;
-      transform:translateY(-50%);
-    }
-
-    .chairs-4::before{
-      width:20px;
-      height:32px;
-      left:-10px;
-      top:50%;
-      transform:translateY(-50%);
-    }
-
-    .chairs-4::after{
-      width:20px;
-      height:32px;
-      right:-10px;
-      top:50%;
-      transform:translateY(-50%);
-    }
-
-    .chairs-6{
-      position:absolute;
-      inset:-14px;
-    }
-
-    .chairs-6::before{
-      content:"";
-      position:absolute;
-      width:22px;
-      height:34px;
-      left:-12px;
-      top:50%;
-      transform:translateY(-50%);
-      background:#6f4a34;
-      border-radius:10px;
-      box-shadow:
-        128px 0 0 #6f4a34,
-        28px -30px 0 #6f4a34,
-        78px -30px 0 #6f4a34,
-        28px 30px 0 #6f4a34,
-        78px 30px 0 #6f4a34;
-    }
-
-    .t-u1{ left:50%; bottom:34px; transform:translateX(-50%); }
-    .t-u2{ left:12%; top:51%; }
-    .t-u3{ right:12%; top:51%; }
-    .t-u4{ left:26%; top:24%; }
-    .t-u5{ right:26%; top:24%; }
-    .t-u6{ left:43%; top:12%; }
-    .t-u7{ right:43%; top:12%; }
-
-    .t-b1{ left:7%; top:58%; }
-    .t-b2{ right:8%; top:54%; }
-    .t-b3{ left:18%; top:20%; }
-    .t-b4{ right:20%; top:18%; }
-    .t-b5{ left:34%; top:34%; }
-    .t-b6{ right:34%; top:70%; }
-
-    .t-g1{ left:17%; top:30%; }
-    .t-g2{ right:17%; top:30%; }
-    .t-g3{ left:20%; top:56%; }
-    .t-g4{ right:20%; top:56%; }
-    .t-g5{ left:50%; top:18%; transform:translateX(-50%); }
-    .t-g6{ left:50%; bottom:14%; transform:translateX(-50%); }
-
-    .footer-note{
-      margin-top:16px;
-      padding:14px 16px;
-      background:#f7f8f2;
-      border:1px solid rgba(47,79,54,.08);
-      border-radius:16px;
-      color:#667065;
-      font-size:13px;
-      line-height:1.6;
-    }
-
-    @media (max-width: 1180px){
-      .booking-layout{
-        grid-template-columns:1fr;
-      }
-
-      .map-head{
-        flex-direction:column;
-      }
-    }
-
-    @media (max-width: 760px){
-      .container{
-        width:min(var(--container), calc(100% - 24px));
-      }
-
-      .topbar__inner{
-        min-height:auto;
-        padding:14px 0;
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .topbar__actions{
-        width:100%;
-        justify-content:space-between;
-      }
-
-      .hero__card{
-        padding:26px 22px;
-        min-height:190px;
-      }
-
-      .hero h1{
-        font-size:32px;
-      }
-
-      .form-grid{
-        grid-template-columns:1fr;
-      }
-
-      .steps{
-        grid-template-columns:1fr;
-      }
-
-      .zone-tabs{
-        grid-template-columns:1fr;
-      }
-
-      .salas-scene{
-        min-height:520px;
-      }
-
-      .gazebo-ring{
-        width:360px;
-        height:360px;
-      }
-
-      .round .table-top{
-        width:74px;
-        height:74px;
-      }
-
-      .rect .table-top{
-        width:98px;
-        height:62px;
-      }
-
-      .small-rect .table-top{
-        width:82px;
-        height:52px;
-      }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto;}
+      *{transition:none !important;}
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="container topbar__inner">
-      <div class="brand">
-        <div class="brand__title">Pajin Salaš</div>
-        <div class="brand__subtitle">Čenej • Novi Sad</div>
-      </div>
-
-      <div class="topbar__actions">
-        <a href="index.html" class="btn btn--ghost">Nazad na početnu</a>
-        <a href="tel:+381641305870" class="btn btn--gold">Pozovi</a>
-      </div>
+<header class="topbar">
+  <div class="container topbar__inner">
+    <div class="brand">
+      <div class="brand__title">Pajin Salaš</div>
+      <div class="brand__subtitle">Čenej · Novi Sad</div>
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero__card">
-        <div class="hero__content">
-          <div class="eyebrow">Online zahtev za rezervaciju</div>
-          <h1>Rezervišite sto uz vizuelan raspored salaša</h1>
-          <p>Izaberite datum, vreme, zonu i konkretan sto. Zahtev stiže direktno na mejl restorana, a potvrda se šalje nakon provere.</p>
+    <nav class="topnav" aria-label="Glavna navigacija">
+      <a href="index.html">Početna</a>
+      <a href="meni.html">Meni</a>
+      <a href="rezervacije.html" aria-current="page">Rezerviši</a>
+      <a href="index.html#lokacija">Lokacija</a>
+    </nav>
+
+    <a href="tel:+381641305870" class="btn btn--gold">Pozovi</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__card">
+      <div class="eyebrow">Zahtev za rezervaciju</div>
+      <h1>Izaberite svoj sto na salašu</h1>
+      <p>Popunite podatke i kliknite na sto koji želite. Javljamo vam se za potvrdu u roku od nekoliko sati. Za isti dan i veća društva radije nas pozovite.</p>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+  <div class="container">
+    <div class="booking-layout">
+
+      <!-- ============ FORMA ============ -->
+      <section class="card">
+        <span class="kicker">Podaci</span>
+        <h2>Rezervacija stola</h2>
+        <p class="lede">Popunite polja, izaberite zonu i sto na rasporedu pored.</p>
+
+        <!-- Signature: rezervacioni listić koji se popunjava uživo -->
+        <div class="slip" aria-live="polite">
+          <div class="slip__title">Vaša rezervacija</div>
+          <dl class="slip__rows">
+            <div class="slip__row"><dt>Datum</dt><dd id="slip-datum" class="is-empty">—</dd></div>
+            <div class="slip__row"><dt>Vreme</dt><dd id="slip-vreme" class="is-empty">—</dd></div>
+            <div class="slip__row"><dt>Osoba</dt><dd id="slip-osoba" class="is-empty">—</dd></div>
+            <div class="slip__row"><dt>Zona</dt><dd id="slip-zona">Unutra</dd></div>
+            <div class="slip__row"><dt>Sto</dt><dd id="slip-sto" class="is-empty">—</dd></div>
+          </dl>
         </div>
+
+        <form id="rezervacija-forma" action="https://formsubmit.co/rezervacije.pajinsalas@gmail.com" method="POST">
+          <!-- FormSubmit podešavanja -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="Nova rezervacija — Pajin Salaš">
+          <!-- ZAMENI adresom svoje stranice zahvalnice kad je postaviš: -->
+          <input type="hidden" name="_next" value="https://pajinsalas.rs/hvala.html">
+          <!-- Zamka za botove: ljudi ovo polje ne vide -->
+          <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <input type="hidden" name="zona" id="zona" value="Unutra">
+          <input type="hidden" name="sto" id="sto">
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="ime">Ime i prezime</label>
+              <input id="ime" type="text" name="ime" placeholder="Vaše ime i prezime" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="telefon">Broj telefona</label>
+              <input id="telefon" type="tel" name="telefon" placeholder="06X XXX XXXX" autocomplete="tel"
+                     pattern="[0-9 +\-\(\)]{9,20}" title="Unesite broj telefona, npr. 064 123 4567" required>
+            </div>
+
+            <div class="field field--full">
+              <label for="email">Email <span class="label-hint">— na njega šaljemo potvrdu</span></label>
+              <input id="email" type="email" name="email" placeholder="vas@email.com" autocomplete="email" required>
+            </div>
+
+            <div class="field">
+              <label for="datum">Datum</label>
+              <input id="datum" type="date" name="datum" required>
+            </div>
+
+            <div class="field">
+              <label for="vreme">Vreme dolaska</label>
+              <select id="vreme" name="vreme" required>
+                <option value="">Izaberite vreme</option>
+                <option>10:00</option><option>10:30</option>
+                <option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option>
+                <option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option>
+                <option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option>
+                <option>17:00</option><option>17:30</option>
+                <option>18:00</option><option>18:30</option>
+                <option>19:00</option><option>19:30</option>
+                <option>20:00</option><option>20:30</option>
+                <option>21:00</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="broj_osoba">Broj osoba</label>
+              <select id="broj_osoba" name="broj_osoba" required>
+                <option value="">Izaberite</option>
+                <option value="2">2 osobe</option>
+                <option value="3">3 osobe</option>
+                <option value="4">4 osobe</option>
+                <option value="5">5 osoba</option>
+                <option value="6">6 osoba</option>
+                <option value="7">7 osoba</option>
+                <option value="8">8 osoba</option>
+                <option value="9">9 i više osoba</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="povod">Povod <span class="label-hint">— opciono</span></label>
+              <select id="povod" name="povod">
+                <option value="">Običan ručak / večera</option>
+                <option>Rođendan</option>
+                <option>Godišnjica</option>
+                <option>Krštenje / slava</option>
+                <option>Poslovni ručak</option>
+                <option>Porodično okupljanje</option>
+                <option>Drugo</option>
+              </select>
+            </div>
+
+            <div class="field field--full">
+              <label for="napomena">Napomena <span class="label-hint">— opciono</span></label>
+              <textarea id="napomena" name="napomena" placeholder="Npr. dečja stolica, alergije, torta, sto dalje od muzike..."></textarea>
+            </div>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="obavestenja" value="Da">
+            <span>Želim da povremeno primam obaveštenja o sezonskoj ponudi i događajima na salašu.</span>
+          </label>
+
+          <div class="note">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            Rezervacija važi tek kada je potvrdimo pozivom ili porukom. Ako vam treba sto za danas, pozovite nas — brže je.
+          </div>
+
+          <div class="error-msg" id="greska" role="alert"></div>
+
+          <div class="actions">
+            <button class="btn btn--primary" type="submit">Pošalji zahtev za rezervaciju</button>
+            <a class="btn btn--outline" href="tel:+381641305870">Radije pozovi</a>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============ MAPA STOLOVA ============ -->
+      <section class="card card--map">
+        <div class="map-head">
+          <span class="kicker">Izbor stola</span>
+          <h3>Raspored salaša</h3>
+          <p>Kliknite na sto koji želite. Kad unesete broj osoba, premali stolovi se automatski isključuju.</p>
+        </div>
+
+        <div class="zone-tabs" role="tablist" aria-label="Zone salaša">
+          <button class="zone-tab active" type="button" role="tab" aria-selected="true" data-zone="unutra">
+            Unutra <small>7 stolova</small>
+          </button>
+          <button class="zone-tab" type="button" role="tab" aria-selected="false" data-zone="basta">
+            Bašta <small>6 stolova</small>
+          </button>
+          <button class="zone-tab" type="button" role="tab" aria-selected="false" data-zone="gazebo">
+            Gazebo <small>6 stolova</small>
+          </button>
+        </div>
+
+        <!-- UNUTRA -->
+        <div class="salas-map active" id="unutra">
+          <div class="scene scene--inside">
+            <div class="scene__label">Unutrašnjost salaša</div>
+
+            <div class="table-row table-row--3">
+              <button class="tbl" type="button" data-table="U1" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U1</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto U1</div>
+              </button>
+              <button class="tbl" type="button" data-table="U2" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U2</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto U2</div>
+              </button>
+              <button class="tbl" type="button" data-table="U3" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U3</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto U3</div>
+              </button>
+            </div>
+
+            <div class="table-row table-row--2">
+              <button class="tbl" type="button" data-table="U4" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U4</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto U4</div>
+              </button>
+              <button class="tbl" type="button" data-table="U5" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U5</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto U5</div>
+              </button>
+            </div>
+
+            <div class="table-row table-row--2">
+              <button class="tbl" type="button" data-table="U6" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U6</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto U6</div>
+              </button>
+              <button class="tbl" type="button" data-table="U7" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-round">U7</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto U7</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BAŠTA -->
+        <div class="salas-map" id="basta">
+          <div class="scene scene--garden">
+            <div class="scene__label">Bašta i terasa</div>
+
+            <div class="table-row table-row--2">
+              <button class="tbl" type="button" data-table="B1" data-seats="6" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B1</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-tl"></div><div class="chair c-tr"></div>
+                  <div class="chair c-bl"></div><div class="chair c-br"></div>
+                </div>
+                <div class="tbl__name">Sto B1</div>
+              </button>
+              <button class="tbl" type="button" data-table="B2" data-seats="6" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B2</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-tl"></div><div class="chair c-tr"></div>
+                  <div class="chair c-bl"></div><div class="chair c-br"></div>
+                </div>
+                <div class="tbl__name">Sto B2</div>
+              </button>
+            </div>
+
+            <div class="table-row table-row--2">
+              <button class="tbl" type="button" data-table="B3" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B3</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto B3</div>
+              </button>
+              <button class="tbl" type="button" data-table="B4" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B4</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto B4</div>
+              </button>
+            </div>
+
+            <div class="table-row table-row--2">
+              <button class="tbl" type="button" data-table="B5" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B5</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto B5</div>
+              </button>
+              <button class="tbl" type="button" data-table="B6" data-seats="4" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-rect">B6</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                  <div class="chair c-t"></div><div class="chair c-b"></div>
+                </div>
+                <div class="tbl__name">Sto B6</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAZEBO -->
+        <div class="salas-map" id="gazebo">
+          <div class="scene scene--gazebo">
+            <div class="scene__label">Gazebo zona</div>
+
+            <div class="table-row table-row--3">
+              <button class="tbl" type="button" data-table="G1" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G1</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G1</div>
+              </button>
+              <button class="tbl" type="button" data-table="G2" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G2</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G2</div>
+              </button>
+              <button class="tbl" type="button" data-table="G3" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G3</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G3</div>
+              </button>
+            </div>
+
+            <div class="table-row table-row--3">
+              <button class="tbl" type="button" data-table="G4" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G4</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G4</div>
+              </button>
+              <button class="tbl" type="button" data-table="G5" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G5</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G5</div>
+              </button>
+              <button class="tbl" type="button" data-table="G6" data-seats="2" aria-pressed="false">
+                <div class="tbl__visual">
+                  <div class="tbl__surface s-small">G6</div>
+                  <div class="chair c-l"></div><div class="chair c-r"></div>
+                </div>
+                <div class="tbl__name">Sto G6</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-hint" id="map-hint">
+          <strong>Savet:</strong> prvo unesite broj osoba u formu — prikazaćemo samo stolove koji vam odgovaraju.
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <h4>Pajin Salaš</h4>
+      <p>Čenej • Novi Sad<br>Tradicionalni salaš od 1946.</p>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <p>
+        <a href="tel:+381641305870">064 130 5870</a><br>
+        <a href="tel:+381637196866">063 719 6866</a><br>
+        Međunarodni put 325
+      </p>
+    </div>
+    <div>
+      <h4>Radno vreme</h4>
+      <p>Ponedeljak – Nedelja<br>09:00 – 23:00</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/pajinsalas/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/pajinsalas" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="footer-bottom">© 2025 Pajin Salaš. Sva prava zadržana.</div>
+</footer>
 
-  <main class="main">
-    <div class="container">
-      <div class="booking-layout">
+<div class="mobile-bar">
+  <a class="btn btn--outline" href="tel:+381641305870">Pozovi</a>
+  <button class="btn btn--primary" type="submit" form="rezervacija-forma">Pošalji zahtev</button>
+</div>
 
-        <section class="card form-card">
-          <span class="section-kicker">Korak po korak</span>
-          <h2 class="form-title">Podaci za rezervaciju</h2>
-          <p class="form-subtitle">Prvo unesite osnovne podatke, zatim izaberite zonu i kliknite na željeni sto u desnom panelu.</p>
+<script>
+(function () {
+  var ZONE_LABELS = { unutra: 'Unutra', basta: 'Bašta', gazebo: 'Gazebo' };
 
-          <div class="steps">
-            <div class="step">
-              <strong>1. Termin</strong>
-              <span>Datum, vreme i broj osoba.</span>
-            </div>
-            <div class="step">
-              <strong>2. Zona</strong>
-              <span>Unutra, bašta ili gazebo.</span>
-            </div>
-            <div class="step">
-              <strong>3. Sto</strong>
-              <span>Klik na vizuelni prikaz stola.</span>
-            </div>
-          </div>
+  var tabs      = document.querySelectorAll('.zone-tab');
+  var maps      = document.querySelectorAll('.salas-map');
+  var tables    = document.querySelectorAll('.tbl');
+  var zonaInput = document.getElementById('zona');
+  var stoInput  = document.getElementById('sto');
+  var osobaSel  = document.getElementById('broj_osoba');
+  var datumInp  = document.getElementById('datum');
+  var vremeSel  = document.getElementById('vreme');
+  var forma     = document.getElementById('rezervacija-forma');
+  var greska    = document.getElementById('greska');
+  var hint      = document.getElementById('map-hint');
 
-          <form action="https://formsubmit.co/rezervacije.pajinsalas@gmail.com" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Nova rezervacija - Pajin Salaš">
-            <input type="hidden" name="sto" id="sto">
+  /* ---- Rezervacioni listić ---- */
+  function setSlip(id, value) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = value || '—';
+    el.classList.toggle('is-empty', !value);
+  }
 
-            <div class="form-grid">
-              <div class="field">
-                <label for="ime">Ime i prezime</label>
-                <input id="ime" type="text" name="ime" placeholder="Unesite ime i prezime" required>
-              </div>
+  function formatDatum(v) {
+    if (!v) return '';
+    var d = v.split('-');
+    return d[2] + '.' + d[1] + '.';
+  }
 
-              <div class="field">
-                <label for="telefon">Broj telefona</label>
-                <input id="telefon" type="tel" name="telefon" placeholder="06X XXX XXXX" required>
-              </div>
+  /* ---- Zone ---- */
+  function showZone(zone) {
+    maps.forEach(function (m) { m.classList.toggle('active', m.id === zone); });
+    tabs.forEach(function (t) {
+      var on = t.dataset.zone === zone;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    zonaInput.value = ZONE_LABELS[zone];
+    setSlip('slip-zona', ZONE_LABELS[zone]);
+  }
 
-              <div class="field">
-                <label for="datum">Datum</label>
-                <input id="datum" type="date" name="datum" required>
-              </div>
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { showZone(t.dataset.zone); });
+  });
 
-              <div class="field">
-                <label for="vreme">Vreme</label>
-                <select id="vreme" name="vreme" required>
-                  <option value="">Izaberite vreme</option>
-                  <option>10:00</option>
-                  <option>12:00</option>
-                  <option>14:00</option>
-                  <option>16:00</option>
-                  <option>18:00</option>
-                  <option>20:00</option>
-                  <option>21:00</option>
-                </select>
-              </div>
+  /* ---- Izbor stola ---- */
+  tables.forEach(function (t) {
+    t.addEventListener('click', function () {
+      if (t.disabled) return;
+      tables.forEach(function (x) { x.classList.remove('selected'); x.setAttribute('aria-pressed', 'false'); });
+      t.classList.add('selected');
+      t.setAttribute('aria-pressed', 'true');
+      stoInput.value = t.dataset.table;
+      setSlip('slip-sto', 'Sto ' + t.dataset.table);
+      greska.classList.remove('is-visible');
+    });
+  });
 
-              <div class="field">
-                <label for="broj_osoba">Broj osoba</label>
-                <select id="broj_osoba" name="broj_osoba" required>
-                  <option value="">Izaberite broj osoba</option>
-                  <option>2 osobe</option>
-                  <option>3 osobe</option>
-                  <option>4 osobe</option>
-                  <option>5 osoba</option>
-                  <option>6 osoba</option>
-                  <option>7 osoba</option>
-                  <option>8 osoba</option>
-                  <option>9+ osoba</option>
-                </select>
-              </div>
+  /* ---- Filtriranje po broju osoba ---- */
+  function filterTables() {
+    var need = parseInt(osobaSel.value, 10);
 
-              <div class="field">
-                <label for="zona">Zona</label>
-                <select id="zona" name="zona" required>
-                  <option value="">Izaberite zonu</option>
-                  <option value="unutra">Unutra</option>
-                  <option value="basta">Bašta</option>
-                  <option value="gazebo">Gazebo</option>
-                </select>
-              </div>
-
-              <div class="field field--full">
-                <label for="napomena">Napomena</label>
-                <textarea id="napomena" name="napomena" placeholder="Npr. terasa, rođendan, dečja stolica, blizu muzike..."></textarea>
-              </div>
-            </div>
-
-            <div class="reservation-note">
-              Rezervacija važi tek nakon potvrde restorana putem poziva ili poruke. Sivi stolovi su trenutno zauzeti.
-            </div>
-
-            <div class="actions">
-              <button class="btn btn--gold" type="submit">Pošalji zahtev</button>
-              <a class="btn btn--light" href="tel:+381641305870">Pozovi restoran</a>
-            </div>
-          </form>
-        </section>
-
-        <section class="booking-map-card">
-          <div class="map-head">
-            <div>
-              <span class="map-kicker">Vizuelni izbor</span>
-              <h3>Raspored stolova</h3>
-              <p>Izaberite zonu i kliknite na sto koji želite. Broj stola se automatski upisuje u formular.</p>
-            </div>
-
-            <div class="map-legend">
-              <span><i class="dot free"></i> Slobodno</span>
-              <span><i class="dot selected-dot"></i> Izabrano</span>
-              <span><i class="dot busy"></i> Zauzeto</span>
-            </div>
-          </div>
-
-          <div class="zone-tabs">
-            <button class="zone-tab active" type="button" onclick="showZone('unutra', this)">Unutra</button>
-            <button class="zone-tab" type="button" onclick="showZone('basta', this)">Bašta</button>
-            <button class="zone-tab" type="button" onclick="showZone('gazebo', this)">Gazebo</button>
-          </div>
-
-          <div class="salas-map active" id="unutra">
-            <div class="salas-scene inside-scene">
-              <div class="scene-badge badge-left">Prozori</div>
-              <div class="scene-badge badge-right">Centralni stub</div>
-
-              <button class="table3d round t-u1" type="button" data-table="U1">
-                <span class="table-top">U1</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d round t-u2" type="button" data-table="U2">
-                <span class="table-top">U2</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d round t-u3 busy-table" type="button" data-table="U3">
-                <span class="table-top">U3</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d round t-u4" type="button" data-table="U4">
-                <span class="table-top">U4</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d round t-u5" type="button" data-table="U5">
-                <span class="table-top">U5</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d round t-u6" type="button" data-table="U6">
-                <span class="table-top">U6</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d round t-u7" type="button" data-table="U7">
-                <span class="table-top">U7</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="salas-map" id="basta">
-            <div class="salas-scene garden-scene">
-              <div class="scene-badge badge-left">Staza</div>
-              <div class="scene-badge badge-right">Spoljni deo</div>
-
-              <button class="table3d rect t-b1" type="button" data-table="B1">
-                <span class="table-top">B1</span>
-                <span class="chairs chairs-6"></span>
-              </button>
-
-              <button class="table3d rect t-b2" type="button" data-table="B2">
-                <span class="table-top">B2</span>
-                <span class="chairs chairs-6"></span>
-              </button>
-
-              <button class="table3d rect t-b3" type="button" data-table="B3">
-                <span class="table-top">B3</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d rect t-b4 busy-table" type="button" data-table="B4">
-                <span class="table-top">B4</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d rect t-b5" type="button" data-table="B5">
-                <span class="table-top">B5</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-
-              <button class="table3d rect t-b6" type="button" data-table="B6">
-                <span class="table-top">B6</span>
-                <span class="chairs chairs-4"></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="salas-map" id="gazebo">
-            <div class="salas-scene gazebo-scene">
-              <div class="gazebo-ring"></div>
-              <div class="gazebo-tree"></div>
-
-              <button class="table3d small-rect t-g1" type="button" data-table="G1">
-                <span class="table-top">G1</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d small-rect t-g2" type="button" data-table="G2">
-                <span class="table-top">G2</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d small-rect t-g3" type="button" data-table="G3">
-                <span class="table-top">G3</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d small-rect t-g4" type="button" data-table="G4">
-                <span class="table-top">G4</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d small-rect t-g5" type="button" data-table="G5">
-                <span class="table-top">G5</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-
-              <button class="table3d small-rect t-g6 busy-table" type="button" data-table="G6">
-                <span class="table-top">G6</span>
-                <span class="chairs chairs-2"></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="footer-note">
-            Trenutno je ovo premium test verzija bez baze. Sledeći korak je automatska kontrola zauzetih stolova po datumu i vremenu.
-          </div>
-        </section>
-
-      </div>
-    </div>
-  </main>
-
-  <script>
-    function showZone(zone, btn){
-      document.querySelectorAll('.salas-map').forEach(el => el.classList.remove('active'));
-      document.getElementById(zone).classList.add('active');
-
-      document.querySelectorAll('.zone-tab').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-
-      const zonaSelect = document.getElementById('zona');
-      if(zonaSelect) zonaSelect.value = zone;
+    if (!need) {
+      tables.forEach(function (t) { t.disabled = false; });
+      hint.innerHTML = '<strong>Savet:</strong> prvo unesite broj osoba u formu — prikazaćemo samo stolove koji vam odgovaraju.';
+      return;
     }
 
-    const stoInput = document.getElementById('sto');
-    const allTables = document.querySelectorAll('.table3d:not(.busy-table)');
-
-    allTables.forEach(table => {
-      table.addEventListener('click', () => {
-        allTables.forEach(t => t.classList.remove('selected'));
-        table.classList.add('selected');
-        if(stoInput) stoInput.value = table.dataset.table;
+    if (need >= 9) {
+      tables.forEach(function (t) {
+        t.disabled = true;
+        t.classList.remove('selected');
+        t.setAttribute('aria-pressed', 'false');
       });
+      stoInput.value = '';
+      setSlip('slip-sto', '');
+      hint.innerHTML = '<strong>Za društvo od 9 i više osoba</strong> spajamo stolove, pa raspored dogovaramo telefonom. Pošaljite zahtev bez izbora stola ili nas pozovite na <a href="tel:+381641305870">064 130 5870</a>.';
+      return;
+    }
+
+    var available = 0;
+    tables.forEach(function (t) {
+      var fits = parseInt(t.dataset.seats, 10) >= need;
+      t.disabled = !fits;
+      if (!fits && t.classList.contains('selected')) {
+        t.classList.remove('selected');
+        t.setAttribute('aria-pressed', 'false');
+        stoInput.value = '';
+        setSlip('slip-sto', '');
+      }
+      if (fits) available++;
     });
 
-    const zonaSelect = document.getElementById('zona');
-    if(zonaSelect){
-      zonaSelect.addEventListener('change', e => {
-        const tab = document.querySelector(`.zone-tab[onclick*="${e.target.value}"]`);
-        if(tab) showZone(e.target.value, tab);
-      });
-    }
+    hint.innerHTML = '<strong>' + available + ' stolova</strong> odgovara društvu od ' + need +
+                     ' ' + (need === 1 ? 'osobe' : (need < 5 ? 'osobe' : 'osoba')) +
+                     '. Ostali su zatamnjeni jer nemaju dovoljno mesta.';
+  }
 
-    const dateInput = document.getElementById('datum');
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    dateInput.min = `${yyyy}-${mm}-${dd}`;
-  </script>
+  osobaSel.addEventListener('change', function () {
+    var n = osobaSel.value;
+    setSlip('slip-osoba', n ? (n === '9' ? '9+' : n) : '');
+    filterTables();
+  });
+
+  datumInp.addEventListener('change', function () { setSlip('slip-datum', formatDatum(datumInp.value)); });
+  vremeSel.addEventListener('change', function () { setSlip('slip-vreme', vremeSel.value); });
+
+  /* ---- Minimalni datum: danas ---- */
+  var today = new Date();
+  datumInp.min = today.getFullYear() + '-' +
+                 String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                 String(today.getDate()).padStart(2, '0');
+
+  /* ---- Validacija pre slanja ---- */
+  forma.addEventListener('submit', function (e) {
+    var need = parseInt(osobaSel.value, 10);
+    if (!stoInput.value && need && need < 9) {
+      e.preventDefault();
+      greska.textContent = 'Izaberite sto na rasporedu pored, pa pošaljite zahtev.';
+      greska.classList.add('is-visible');
+      document.querySelector('.card--map').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    if (!stoInput.value) stoInput.value = 'Bez izbora — dogovor telefonom';
+  });
+
+  showZone('unutra');
+})();
+</script>
 
 </body>
 </html>

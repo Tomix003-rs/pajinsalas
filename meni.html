@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="sr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meni | Pajin Salaš — Čenej, Novi Sad</title>
+  <meta name="description" content="Kompletan meni Pajinog Salaša na Čeneju kod Novog Sada: domaća predjela, čorbe, sač, roštilj i dezerti. Rezervacije na 064 130 5870.">
+
+  <link rel="stylesheet" href="stylesheader.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       PAJIN SALAŠ — MENI
+       Paleta izvedena iz salaša: hartija, mastilo, žito, paprika.
+       ============================================================ */
+    .menu-page {
+      --paper: #fbf7f0;
+      --field: #efe7d7;
+      --ink: #241f1a;
+      --muted: #6e655a;
+      --brand: #a8763e;
+      --paprika: #b3341f;
+      --line: #ddd2bd;
+      --card: #ffffff;
+      --shadow: 0 1px 2px rgba(36, 31, 26, .06), 0 8px 24px rgba(36, 31, 26, .07);
+      --shadow-lift: 0 2px 4px rgba(36, 31, 26, .08), 0 18px 40px rgba(36, 31, 26, .14);
+      --nav-h: 60px;
+
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Karla', system-ui, -apple-system, sans-serif;
+      padding-bottom: 80px;
+    }
+
+    .menu-page *,
+    .menu-page *::before,
+    .menu-page *::after { box-sizing: border-box; }
+
+    /* --- Uvod --------------------------------------------------- */
+    .menu-hero {
+      text-align: center;
+      padding: 56px 20px 36px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .menu-hero__eyebrow {
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--brand);
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+
+    .menu-hero__title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(38px, 7vw, 62px);
+      line-height: 1.02;
+      letter-spacing: -.02em;
+      margin: 0 0 16px;
+    }
+
+    .menu-hero__lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0 auto 26px;
+      max-width: 52ch;
+    }
+
+    .menu-hero__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .mbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .mbtn--solid {
+      background: var(--paprika);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(179, 52, 31, .28);
+    }
+
+    .mbtn--solid:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(179, 52, 31, .34); }
+
+    .mbtn--ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+    }
+
+    .mbtn--ghost:hover { background: var(--field); transform: translateY(-2px); }
+
+    /* --- Vez (signature) ---------------------------------------- */
+    /* Vojvođanski krstić — tanka traka koja deli sekcije. */
+    .stitch {
+      height: 10px;
+      background-image:
+        linear-gradient(45deg, var(--brand) 1.5px, transparent 1.5px),
+        linear-gradient(-45deg, var(--brand) 1.5px, transparent 1.5px);
+      background-size: 10px 10px;
+      opacity: .45;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    /* --- Sticky navigacija kategorija ---------------------------- */
+    .menu-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(251, 247, 240, .93);
+      backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid var(--line);
+      margin-top: 32px;
+    }
+
+    .menu-nav__scroller {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 20px;
+      scrollbar-width: none;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .menu-nav__scroller::-webkit-scrollbar { display: none; }
+    @media (min-width: 1000px) { .menu-nav__scroller { justify-content: center; } }
+
+    .menu-nav a {
+      flex: 0 0 auto;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      transition: all .16s ease;
+    }
+
+    .menu-nav a:hover { color: var(--ink); background: var(--field); }
+    .menu-nav a.is-active { color: #fff; background: var(--brand); }
+
+    /* --- Sekcije ------------------------------------------------- */
+    .menu-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .course { scroll-margin-top: calc(var(--nav-h) + 12px); padding-top: 56px; }
+
+    .course__head {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .course__head::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .course__title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(24px, 3.6vw, 34px);
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    .course__count {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--brand);
+      background: var(--field);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    /* --- Grid + kartice ------------------------------------------ */
+    .dishes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .dish {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dish:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+
+    .dish__media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: var(--field);
+      overflow: hidden;
+      cursor: zoom-in;
+      border: 0;
+      padding: 0;
+      width: 100%;
+      display: block;
+    }
+
+    .dish__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;          /* apetitnije od "contain" — bez praznih ivica */
+      display: block;
+      transition: transform .5s cubic-bezier(.2, .7, .3, 1);
+    }
+
+    .dish:hover .dish__media img { transform: scale(1.045); }
+
+    .dish__body {
+      padding: 15px 16px 17px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .dish__name {
+      font-size: 15.5px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* Tačkasti vodič kao u štampanom meniju */
+    .dish__leader {
+      flex: 1;
+      border-bottom: 1.5px dotted var(--line);
+      transform: translateY(-4px);
+      min-width: 12px;
+    }
+
+    .dish__price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+
+    .dish__price:empty { display: none; }
+    .dish__price:empty ~ .dish__leader,
+    .dish__body:has(.dish__price:empty) .dish__leader { display: none; }
+
+    /* --- Napomena ------------------------------------------------ */
+    .menu-note {
+      margin: 64px auto 0;
+      max-width: 720px;
+      text-align: center;
+      background: var(--field);
+      border-radius: 14px;
+      padding: 26px 24px;
+    }
+
+    .menu-note h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .menu-note p { margin: 0 0 16px; color: var(--muted); line-height: 1.6; font-size: 15px; }
+
+    /* --- Mobilna CTA traka --------------------------------------- */
+    .menu-cta-bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 60;
+      display: none;
+      gap: 10px;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(251, 247, 240, .96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line);
+    }
+
+    .menu-cta-bar .mbtn { flex: 1; justify-content: center; padding: 13px 12px; }
+
+    /* --- Lightbox ------------------------------------------------ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(20, 16, 12, .9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.is-open { display: flex; }
+
+    .lightbox img {
+      max-width: min(1000px, 94vw);
+      max-height: 82vh;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .lightbox__caption {
+      position: absolute;
+      bottom: 26px;
+      left: 0; right: 0;
+      text-align: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* --- Pristupačnost / responsive ------------------------------ */
+    .menu-page a:focus-visible,
+    .menu-page button:focus-visible {
+      outline: 3px solid var(--paprika);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .dishes { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .menu-hero { padding: 40px 20px 28px; }
+      .course { padding-top: 44px; }
+    }
+
+    @media (max-width: 560px) {
+      .dishes { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .dish__body { padding: 12px 12px 14px; flex-wrap: wrap; }
+      .dish__name { font-size: 14px; }
+      .dish__leader { display: none; }
+      .menu-cta-bar { display: flex; }
+      .menu-page { padding-bottom: 96px; }
+      .menu-hero__actions { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .menu-page *, .menu-page *::before, .menu-page *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header__wrapper">
+
+      <div class="logo">
+        <img src="logo.jpg" alt="Pajin Salaš logo" class="logo__img" loading="eager" decoding="async" width="120" height="120">
+        <div class="logo__text">
+          <div class="logo__title">Pajin Salaš</div>
+          <div class="logo__subtitle">Čenej • Novi Sad</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Početna</a>
+        <a href="meni.html" aria-current="page">Meni</a>
+        <a href="rezervacije.html">Rezerviši</a>
+        <a href="index.html#lokacija">Lokacija</a>
+      </nav>
+
+      <a class="btn-reserve" href="tel:+381641305870">Nazovi</a>
+
+    </div>
+  </header>
+
+  <main class="menu-page">
+
+    
+    <div class="stitch"></div>
+
+    <nav class="menu-nav" aria-label="Kategorije menija">
+      <div class="menu-nav__scroller">
+        <a href="#dorucak">Doručak</a>
+        <a href="#hladna-predjela">Hladna predjela</a>
+        <a href="#topla-predjela">Topla predjela</a>
+        <a href="#supe">Supe i čorbe</a>
+        <a href="#kuvana-jela">Kuvana jela</a>
+        <a href="#glavna-jela">Glavna jela</a>
+        <a href="#rostilj">Roštilj</a>
+        <a href="#dezerti">Dezerti</a>
+      </div>
+    </nav>
+
+    <div class="menu-wrap">
+
+      <!-- ================= DORUČAK ================= -->
+      <section class="course" id="dorucak">
+        <div class="course__head">
+          <h2 class="course__title">Doručak</h2>
+          <span class="course__count">3 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Jaje na oko">
+              <img src="" alt="Jaje na oko" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Jaje na oko</h3>
+              <span class="dish__leader"></span>
+              <!-- Cenu upiši ovde, npr: <span class="dish__price">320 din</span> -->
+              <span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Omlet sa šunkom">
+              <img src="omletsunkasir.jpg" alt="Omlet sa šunkom" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Omlet sa šunkom</h3>
+              <span class="dish__leader"></span>
+              <span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Omlet sa sirom">
+              <img src="omletsir.jpeg" alt="Omlet sa sirom" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Omlet sa sirom</h3>
+              <span class="dish__leader"></span>
+              <span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= HLADNA PREDJELA ================= -->
+      <section class="course" id="hladna-predjela">
+        <div class="course__head">
+          <h2 class="course__title">Hladna predjela</h2>
+          <span class="course__count">8 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Domaća šunka">
+              <img src="hrana/domaca-sunka.jpg" alt="Domaća šunka" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Domaća šunka</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Kulen">
+              <img src="hrana/kulen.jpg" alt="Kulen" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Kulen</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Domaća kobasica">
+              <img src="hrana/domaca-kobasica.jpg" alt="Domaća kobasica" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Domaća kobasica</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Kozji sir sa mirođijom">
+              <img src="kozijisirsamirodjijom.jpeg" alt="Kozji sir sa mirođijom" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Kozji sir sa mirođijom</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Kozji sir sa lešnikom">
+              <img src="hrana/kozji-sir-sa-lesnikom.jpg" alt="Kozji sir sa lešnikom" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Kozji sir sa lešnikom</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Mladi kravlji sir">
+              <img src="hrana/mladi-kravlji-sir.jpg" alt="Mladi kravlji sir" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Mladi kravlji sir</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Kajmak">
+              <img src="hrana/kajmak.jpg" alt="Kajmak" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Kajmak</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Ujkino predjelo">
+              <img src="ujkinopredjelo.jpeg" alt="Ujkino predjelo" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Ujkino predjelo</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= TOPLA PREDJELA ================= -->
+      <section class="course" id="topla-predjela">
+        <div class="course__head">
+          <h2 class="course__title">Topla predjela</h2>
+          <span class="course__count">4 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Proja">
+              <img src="proja.jpeg" alt="Proja" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Proja</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pileće rolnice">
+              <img src="hrana/pilece-rolnice.jpg" alt="Pileće rolnice" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pileće rolnice</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Biftek rolnice">
+              <img src="hrana/biftek-rolnice.jpg" alt="Biftek rolnice" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Biftek rolnice</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Šampinjoni na žaru">
+              <img src="hrana/sampinjoni-na-zaru.jpg" alt="Šampinjoni na žaru" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Šampinjoni na žaru</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= SUPE I ČORBE ================= -->
+      <section class="course" id="supe">
+        <div class="course__head">
+          <h2 class="course__title">Supe i čorbe</h2>
+          <span class="course__count">3 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Domaća supa">
+              <img src="domacasupa.jpg" alt="Domaća supa" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Domaća supa</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Teleća čorba">
+              <img src="telece.jpeg" alt="Teleća čorba" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Teleća čorba</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Paradajz čorba">
+              <img src="paradajzcorba.jpg" alt="Paradajz čorba" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Paradajz čorba</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= KUVANA JELA ================= -->
+      <section class="course" id="kuvana-jela">
+        <div class="course__head">
+          <h2 class="course__title">Kuvana jela</h2>
+          <span class="course__count">3 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Gulaš">
+              <img src="gulas.jpeg" alt="Gulaš" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Gulaš</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Sarmice u zelju">
+              <img src="sarmice.jpeg" alt="Sarmice u zelju" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Sarmice u zelju</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Mućkalica">
+              <img src="milnic.jpeg" alt="Mućkalica" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Mućkalica</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= GLAVNA JELA ================= -->
+      <section class="course" id="glavna-jela">
+        <div class="course__head">
+          <h2 class="course__title">Glavna jela</h2>
+          <span class="course__count">11 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Dimljena butkica u sosu">
+              <img src="butkica1.jpeg" alt="Dimljena butkica u sosu" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Dimljena butkica u sosu</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Teleći sač">
+              <img src="telecisac.jpeg" alt="Teleći sač" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Teleći sač</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Ćuretina u gorgonzola sosu">
+              <img src="gornoznola.jpg" alt="Ćuretina u gorgonzola sosu" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Ćuretina u gorgonzola sosu</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Ćuretina sa mlincima">
+              <img src="curetinaumlincima.jpeg" alt="Ćuretina sa mlincima" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Ćuretina sa mlincima</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pačija prsa u sosu">
+              <img src="pacetina.jpeg" alt="Pačija prsa u sosu" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pačija prsa u sosu</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Butkica od mangulice">
+              <img src="hrana/butkica-od-mangulice.jpg" alt="Butkica od mangulice" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Butkica od mangulice</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Salašarski vrat">
+              <img src="salarskivrat.jpg" alt="Salašarski vrat" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Salašarski vrat</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pileća džigerica">
+              <img src="dzigerica.jpeg" alt="Pileća džigerica" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pileća džigerica</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Prebranac sa kobasicom">
+              <img src="hrana/prebranac-sa-kobasicom.jpg" alt="Prebranac sa kobasicom" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Prebranac sa kobasicom</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Svinjski jastučići">
+              <img src="svinjski.jpeg" alt="Svinjski jastučići" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Svinjski jastučići</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pileći jastučići">
+              <img src="pilecijastuci.jpg" alt="Pileći jastučići" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pileći jastučići</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= ROŠTILJ ================= -->
+      <section class="course" id="rostilj">
+        <div class="course__head">
+          <h2 class="course__title">Roštilj</h2>
+          <span class="course__count">13 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Ćevapi">
+              <img src="cevap.jpeg" alt="Ćevapi" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Ćevapi</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pileće belo meso">
+              <img src="piletina.JPG" alt="Pileće belo meso sa žara" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pileće belo meso</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Rolovani pileći ražnjići">
+              <img src="hrana/rolovani-pileci-raznjici.jpg" alt="Rolovani pileći ražnjići" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Rolovani pileći ražnjići</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Pileći batak">
+              <img src="hrana/pileci-batak.jpg" alt="Pileći batak" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Pileći batak</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Roštilj kobasica">
+              <img src="hrana/rostilj-kobasica.jpg" alt="Roštilj kobasica" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Roštilj kobasica</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Uštipci">
+              <img src="ustipci.jpeg" alt="Uštipci" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Uštipci</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Biftek">
+              <img src="biftek.jpeg" alt="Biftek" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Biftek</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Rebarca">
+              <img src="rebarca.jpeg" alt="Rebarca" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Rebarca</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Vrat sa žara">
+              <img src="vrat.jpg" alt="Vrat sa žara" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Vrat sa žara</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Dimljena vešalica">
+              <img src="hrana/dimljena-vesalica.jpg" alt="Dimljena vešalica" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Dimljena vešalica</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Dimljena pastrmka">
+              <img src="pastrmka.jpeg" alt="Dimljena pastrmka" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Dimljena pastrmka</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Lignje">
+              <img src="lignje.jpeg" alt="Lignje" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Lignje</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Dimljeni šaran">
+              <img src="dimljenisaran.jpeg" alt="Dimljeni šaran" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Dimljeni šaran</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ================= DEZERTI ================= -->
+      <section class="course" id="dezerti">
+        <div class="course__head">
+          <h2 class="course__title">Dezerti</h2>
+          <span class="course__count">4 jela</span>
+        </div>
+        <div class="dishes">
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Baklava sa orasima">
+              <img src="baklava.jpg" alt="Baklava sa orasima" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Baklava sa orasima</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Krempita">
+              <img src="krempita.jpg" alt="Krempita" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Krempita</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Jafa kolač">
+              <img src="jafa.jpg" alt="Jafa kolač" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Jafa kolač</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+          <article class="dish">
+            <button class="dish__media" type="button" data-name="Šnenokle">
+              <img src="snenokle.jpeg" alt="Šnenokle" loading="lazy" decoding="async" width="800" height="600">
+            </button>
+            <div class="dish__body">
+              <h3 class="dish__name">Šnenokle</h3>
+              <span class="dish__leader"></span><span class="dish__price"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="menu-note">
+        <h3>Dolazite u većem društvu?</h3>
+        <p>Za grupe preko 10 osoba i proslave pripremamo poseban meni. Javite se dan ranije da bismo stigli sve da spremimo.</p>
+        <a class="mbtn mbtn--solid" href="rezervacije.html">Rezerviši sto</a>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="menu-cta-bar">
+    <a class="mbtn mbtn--ghost" href="tel:+381641305870">Pozovi</a>
+    <a class="mbtn mbtn--solid" href="rezervacije.html">Rezerviši sto</a>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Uvećana fotografija">
+    <img src="" alt="">
+    <div class="lightbox__caption"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer-col">
+        <h4>Pajin Salaš</h4>
+        <p>Čenej • Novi Sad</p>
+        <p>Tradicionalni salaš od 1946.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p><a href="tel:+381641305870">064 130 5870</a></p>
+        <p><a href="tel:+381637196866">063 719 6866</a></p>
+        <p>Međunarodni put 325</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Radno vreme</h4>
+        <p>Ponedeljak – Nedelja</p>
+        <p>09:00 – 23:00</p>
+
+        <div class="footer-social">
+          <a href="https://www.instagram.com/pajinsalas/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/pajinsalas" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Pajin Salaš. Sva prava zadržana.
+    </div>
+  </footer>
+
+  <script>
+    // Aktivna kategorija u sticky navigaciji
+    (function () {
+      var links = document.querySelectorAll('.menu-nav a');
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('is-active'); });
+            if (map[e.target.id]) map[e.target.id].classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+
+      document.querySelectorAll('.course').forEach(function (s) { obs.observe(s); });
+    })();
+
+    // Uvećanje fotografije
+    (function () {
+      var box = document.getElementById('lightbox');
+      var img = box.querySelector('img');
+      var cap = box.querySelector('.lightbox__caption');
+
+      document.querySelectorAll('.dish__media').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var source = btn.querySelector('img');
+          img.src = source.src;
+          img.alt = source.alt;
+          cap.textContent = btn.dataset.name || '';
+          box.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function close() {
+        box.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      box.addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
+</body>
+
+</html>
