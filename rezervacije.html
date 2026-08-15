@@ -106,13 +106,12 @@
 
     /* ---------- Layout ---------- */
     .main{padding:8px 0 64px;}
-    .booking-layout{display:grid;grid-template-columns:1.05fr 1.2fr;gap:24px;align-items:start;}
+    .booking-layout{max-width:720px;margin:0 auto;}
 
     .card{
       background:var(--panel);border:1px solid var(--line);
       border-radius:var(--r-xl);box-shadow:var(--shadow);padding:32px;
     }
-    .card--map{padding:24px;}
 
     .kicker{
       font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
@@ -186,13 +185,6 @@
     }
     .note svg{flex-shrink:0;width:18px;height:18px;margin-top:1px;opacity:.7;}
 
-    .error-msg{
-      display:none;margin-top:14px;padding:13px 16px;border-radius:var(--r-md);
-      background:#fdeeeb;border:1px solid rgba(179,52,31,.25);
-      color:#8c2716;font-size:13.5px;font-weight:600;line-height:1.5;
-    }
-    .error-msg.is-visible{display:block;}
-
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
     .btn--primary{
       background:var(--field);color:#fff;padding:15px 24px;font-size:15px;
@@ -210,7 +202,7 @@
     .map-head{margin-bottom:16px;}
     .map-head p{color:var(--muted);font-size:13px;line-height:1.6;}
 
-    .zone-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;}
+    .zone-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
     .zone-tab{
       border:1.5px solid var(--line);border-radius:var(--r-md);
       padding:12px 14px;background:#f4f3ec;color:#4a5a4c;
@@ -224,74 +216,6 @@
       box-shadow:0 4px 14px rgba(47,79,54,.2);
     }
 
-    .salas-map{display:none;}
-    .salas-map.active{display:block;}
-
-    .scene{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);padding:22px 18px;}
-    .scene--inside{background:linear-gradient(180deg,#fff8e8,#f4ead6);}
-    .scene--garden{background:linear-gradient(180deg,#e2ead7,#d4dfc8);}
-    .scene--gazebo{background:radial-gradient(circle,#dce6d2 0%,#cddbc0 55%,#bfcfb0 100%);}
-
-    .scene__label{
-      text-align:center;font-size:11px;font-weight:700;
-      letter-spacing:.09em;text-transform:uppercase;
-      color:var(--muted);margin-bottom:18px;opacity:.75;
-    }
-
-    .table-row{display:grid;gap:18px;justify-items:center;align-items:center;margin-bottom:16px;}
-    .table-row:last-child{margin-bottom:0;}
-    .table-row--3{grid-template-columns:repeat(3,1fr);}
-    .table-row--2{grid-template-columns:repeat(2,1fr);}
-
-    .tbl{
-      display:flex;flex-direction:column;align-items:center;gap:7px;
-      border:none;background:transparent;cursor:pointer;padding:14px 10px;
-      border-radius:16px;transition:.18s ease;width:100%;
-    }
-    .tbl:hover:not(:disabled){background:rgba(47,79,54,.06);transform:translateY(-2px);}
-    .tbl.selected{background:rgba(194,154,75,.14);}
-    .tbl:disabled{opacity:.32;cursor:not-allowed;filter:grayscale(.7);}
-
-    .tbl__visual{position:relative;display:flex;align-items:center;justify-content:center;}
-
-    .tbl__surface{
-      display:flex;align-items:center;justify-content:center;
-      color:#fff;font-weight:700;font-size:13px;letter-spacing:.03em;
-      background:linear-gradient(160deg,var(--field-light) 0%,var(--field) 100%);
-      border:3px solid rgba(255,255,255,.9);
-      box-shadow:0 6px 18px rgba(28,42,31,.22),inset 0 1px 0 rgba(255,255,255,.2);
-      z-index:2;position:relative;transition:.18s ease;
-    }
-    .tbl.selected .tbl__surface{
-      background:linear-gradient(160deg,var(--wheat-light) 0%,var(--wheat) 100%);
-      color:#1e1408;
-      box-shadow:0 8px 22px rgba(194,154,75,.4),inset 0 1px 0 rgba(255,255,255,.25);
-    }
-
-    .s-round{width:74px;height:74px;border-radius:50%;}
-    .s-rect{width:98px;height:60px;border-radius:12px;}
-    .s-small{width:78px;height:50px;border-radius:10px;}
-
-    .chair{width:11px;height:19px;background:#7a5438;border-radius:6px;position:absolute;box-shadow:0 3px 8px rgba(0,0,0,.12);}
-    .c-l{left:-17px;top:50%;transform:translateY(-50%);}
-    .c-r{right:-17px;top:50%;transform:translateY(-50%);}
-    .c-t{top:-17px;left:50%;transform:translateX(-50%) rotate(90deg);}
-    .c-b{bottom:-17px;left:50%;transform:translateX(-50%) rotate(90deg);}
-    .c-tl{top:-17px;left:22%;transform:translateX(-50%) rotate(90deg);}
-    .c-tr{top:-17px;right:22%;transform:translateX(50%) rotate(90deg);}
-    .c-bl{bottom:-17px;left:22%;transform:translateX(-50%) rotate(90deg);}
-    .c-br{bottom:-17px;right:22%;transform:translateX(50%) rotate(90deg);}
-
-    .tbl__name{font-size:12.5px;font-weight:700;color:#5f6a5f;letter-spacing:.03em;}
-    .tbl__info{font-size:11px;color:#8e948c;margin-top:1px;}
-    .tbl.selected .tbl__name{color:#8a6d2c;}
-
-    .map-hint{
-      margin-top:14px;padding:12px 14px;
-      background:#eef0e8;border:1px solid var(--line);
-      border-radius:var(--r-md);color:var(--muted);font-size:12.5px;line-height:1.6;
-    }
-    .map-hint strong{color:var(--field-dark);}
 
     /* ---------- Footer ---------- */
     .site-footer{background:var(--field-dark);color:rgba(255,255,255,.7);padding:44px 0 0;}
@@ -314,7 +238,6 @@
     }
     .mobile-bar .btn{flex:1;padding:14px 12px;border-radius:var(--r-md);}
 
-    @media (max-width:1180px){.booking-layout{grid-template-columns:1fr;}}
     @media (max-width:760px){
       .topnav{display:none;}
       .site-footer__inner{grid-template-columns:1fr;gap:22px;}
@@ -325,10 +248,6 @@
       .card{padding:22px 18px;}
       .form-grid{grid-template-columns:1fr;}
       .zone-tabs{grid-template-columns:1fr;}
-      .table-row--3{grid-template-columns:repeat(2,1fr);}
-      .s-round{width:62px;height:62px;}
-      .s-rect{width:84px;height:52px;}
-      .s-small{width:68px;height:44px;}
       .mobile-bar{display:flex;}
       body{padding-bottom:82px;}
       .actions .btn--outline{display:none;}
@@ -386,8 +305,7 @@
             <div class="slip__row"><dt>Datum</dt><dd id="slip-datum" class="is-empty">—</dd></div>
             <div class="slip__row"><dt>Vreme</dt><dd id="slip-vreme" class="is-empty">—</dd></div>
             <div class="slip__row"><dt>Osoba</dt><dd id="slip-osoba" class="is-empty">—</dd></div>
-            <div class="slip__row"><dt>Zona</dt><dd id="slip-zona">Unutra</dd></div>
-            <div class="slip__row"><dt>Sto</dt><dd id="slip-sto" class="is-empty">—</dd></div>
+            <div class="slip__row"><dt>Zona</dt><dd id="slip-zona">Bašta</dd></div>
           </dl>
         </div>
 
@@ -399,8 +317,7 @@
           <!-- Zamka za botove: ljudi ovo polje ne vide -->
           <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-          <input type="hidden" name="zona" id="zona" value="Unutra">
-          <input type="hidden" name="sto" id="sto">
+          <input type="hidden" name="zona" id="zona" value="Bašta">
 
           <div class="form-grid">
             <div class="field">
@@ -458,6 +375,15 @@
               </select>
             </div>
 
+            <div class="field field--full">
+              <label>Gde želite da sedite</label>
+              <div class="zone-tabs" role="group" aria-label="Zona salaša">
+                <button class="zone-tab active" type="button" data-zone="basta">Bašta</button>
+                <button class="zone-tab" type="button" data-zone="gazebo">Gazebo</button>
+                <button class="zone-tab" type="button" data-zone="unutra">Unutra</button>
+              </div>
+            </div>
+
             <div class="field">
               <label for="povod">Povod <span class="label-hint">— opciono</span></label>
               <select id="povod" name="povod">
@@ -489,8 +415,6 @@
             Rezervacija važi tek kada je potvrdimo pozivom ili porukom. Ako vam treba sto za danas, pozovite nas — brže je.
           </div>
 
-          <div class="error-msg" id="greska" role="alert"></div>
-
           <div class="actions">
             <button class="btn btn--primary" type="submit">Pošalji zahtev za rezervaciju</button>
             <a class="btn btn--outline" href="tel:+381641305870">Radije pozovi</a>
@@ -498,221 +422,6 @@
         </form>
       </section>
 
-      <!-- ============ MAPA STOLOVA ============ -->
-      <section class="card card--map">
-        <div class="map-head">
-          <span class="kicker">Izbor stola</span>
-          <h3>Raspored salaša</h3>
-          <p>Kliknite na sto koji želite. Kad unesete broj osoba, premali stolovi se automatski isključuju.</p>
-        </div>
-
-        <div class="zone-tabs" role="tablist" aria-label="Zone salaša">
-          <button class="zone-tab active" type="button" role="tab" aria-selected="true" data-zone="unutra">
-            Unutra <small>7 stolova</small>
-          </button>
-          <button class="zone-tab" type="button" role="tab" aria-selected="false" data-zone="basta">
-            Bašta <small>6 stolova</small>
-          </button>
-          <button class="zone-tab" type="button" role="tab" aria-selected="false" data-zone="gazebo">
-            Gazebo <small>6 stolova</small>
-          </button>
-        </div>
-
-        <!-- UNUTRA -->
-        <div class="salas-map active" id="unutra">
-          <div class="scene scene--inside">
-            <div class="scene__label">Unutrašnjost salaša</div>
-
-            <div class="table-row table-row--3">
-              <button class="tbl" type="button" data-table="U1" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U1</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto U1</div>
-              </button>
-              <button class="tbl" type="button" data-table="U2" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U2</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto U2</div>
-              </button>
-              <button class="tbl" type="button" data-table="U3" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U3</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto U3</div>
-              </button>
-            </div>
-
-            <div class="table-row table-row--2">
-              <button class="tbl" type="button" data-table="U4" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U4</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto U4</div>
-              </button>
-              <button class="tbl" type="button" data-table="U5" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U5</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto U5</div>
-              </button>
-            </div>
-
-            <div class="table-row table-row--2">
-              <button class="tbl" type="button" data-table="U6" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U6</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto U6</div>
-              </button>
-              <button class="tbl" type="button" data-table="U7" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-round">U7</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto U7</div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- BAŠTA -->
-        <div class="salas-map" id="basta">
-          <div class="scene scene--garden">
-            <div class="scene__label">Bašta i terasa</div>
-
-            <div class="table-row table-row--2">
-              <button class="tbl" type="button" data-table="B1" data-seats="6" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B1</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-tl"></div><div class="chair c-tr"></div>
-                  <div class="chair c-bl"></div><div class="chair c-br"></div>
-                </div>
-                <div class="tbl__name">Sto B1</div>
-              </button>
-              <button class="tbl" type="button" data-table="B2" data-seats="6" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B2</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-tl"></div><div class="chair c-tr"></div>
-                  <div class="chair c-bl"></div><div class="chair c-br"></div>
-                </div>
-                <div class="tbl__name">Sto B2</div>
-              </button>
-            </div>
-
-            <div class="table-row table-row--2">
-              <button class="tbl" type="button" data-table="B3" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B3</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto B3</div>
-              </button>
-              <button class="tbl" type="button" data-table="B4" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B4</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto B4</div>
-              </button>
-            </div>
-
-            <div class="table-row table-row--2">
-              <button class="tbl" type="button" data-table="B5" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B5</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto B5</div>
-              </button>
-              <button class="tbl" type="button" data-table="B6" data-seats="4" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-rect">B6</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                  <div class="chair c-t"></div><div class="chair c-b"></div>
-                </div>
-                <div class="tbl__name">Sto B6</div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- GAZEBO -->
-        <div class="salas-map" id="gazebo">
-          <div class="scene scene--gazebo">
-            <div class="scene__label">Gazebo zona</div>
-
-            <div class="table-row table-row--3">
-              <button class="tbl" type="button" data-table="G1" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G1</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G1</div>
-              </button>
-              <button class="tbl" type="button" data-table="G2" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G2</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G2</div>
-              </button>
-              <button class="tbl" type="button" data-table="G3" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G3</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G3</div>
-              </button>
-            </div>
-
-            <div class="table-row table-row--3">
-              <button class="tbl" type="button" data-table="G4" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G4</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G4</div>
-              </button>
-              <button class="tbl" type="button" data-table="G5" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G5</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G5</div>
-              </button>
-              <button class="tbl" type="button" data-table="G6" data-seats="2" aria-pressed="false">
-                <div class="tbl__visual">
-                  <div class="tbl__surface s-small">G6</div>
-                  <div class="chair c-l"></div><div class="chair c-r"></div>
-                </div>
-                <div class="tbl__name">Sto G6</div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="map-hint" id="map-hint">
-          <strong>Savet:</strong> prvo unesite broj osoba u formu — prikazaćemo samo stolove koji vam odgovaraju.
-        </div>
-      </section>
 
     </div>
   </div>
@@ -754,18 +463,11 @@
   var ZONE_LABELS = { unutra: 'Unutra', basta: 'Bašta', gazebo: 'Gazebo' };
 
   var tabs      = document.querySelectorAll('.zone-tab');
-  var maps      = document.querySelectorAll('.salas-map');
-  var tables    = document.querySelectorAll('.tbl');
   var zonaInput = document.getElementById('zona');
-  var stoInput  = document.getElementById('sto');
   var osobaSel  = document.getElementById('broj_osoba');
   var datumInp  = document.getElementById('datum');
   var vremeSel  = document.getElementById('vreme');
-  var forma     = document.getElementById('rezervacija-forma');
-  var greska    = document.getElementById('greska');
-  var hint      = document.getElementById('map-hint');
 
-  /* ---- Rezervacioni listić ---- */
   function setSlip(id, value) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -779,75 +481,27 @@
     return d[2] + '.' + d[1] + '.';
   }
 
-  /* ---- Zone ---- */
-  function showZone(zone) {
-    maps.forEach(function (m) { m.classList.toggle('active', m.id === zone); });
-    tabs.forEach(function (t) {
-      var on = t.dataset.zone === zone;
-      t.classList.toggle('active', on);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
-    zonaInput.value = ZONE_LABELS[zone];
-    setSlip('slip-zona', ZONE_LABELS[zone]);
-  }
-
   tabs.forEach(function (t) {
-    t.addEventListener('click', function () { showZone(t.dataset.zone); });
-  });
-
-  /* ---- Izbor stola ---- */
-  tables.forEach(function (t) {
     t.addEventListener('click', function () {
-      tables.forEach(function (x) { x.classList.remove('selected'); x.setAttribute('aria-pressed', 'false'); });
-      t.classList.add('selected');
-      t.setAttribute('aria-pressed', 'true');
-      stoInput.value = t.dataset.table;
-      setSlip('slip-sto', 'Sto ' + t.dataset.table);
-      greska.classList.remove('is-visible');
-      updateHint();
+      tabs.forEach(function (x) { x.classList.remove('active'); });
+      t.classList.add('active');
+      zonaInput.value = ZONE_LABELS[t.dataset.zone];
+      setSlip('slip-zona', ZONE_LABELS[t.dataset.zone]);
     });
   });
-
-  /* ---- Poruka o kapacitetu (stolovi ostaju uvek klikabilni) ---- */
-  function updateHint() {
-    var need = parseInt(osobaSel.value, 10);
-    var sel  = document.querySelector('.tbl.selected');
-
-    if (need >= 9) {
-      hint.innerHTML = '<strong>Za devet i više osoba</strong> spajamo stolove, pa raspored dogovaramo telefonom. Slobodno pošaljite zahtev — javićemo se.';
-      return;
-    }
-
-    if (sel && need && parseInt(sel.dataset.seats, 10) < need) {
-      hint.innerHTML = '<strong>Napomena:</strong> izabrani sto je manji nego što vam treba. Nije problem — spojićemo stolove ili vam predložiti drugi.';
-      return;
-    }
-
-    hint.innerHTML = '<strong>Savet:</strong> kliknite na sto koji vam odgovara. Ako niste sigurni, pošaljite zahtev bez izbora — mi ćemo vam naći najbolje mesto.';
-  }
 
   osobaSel.addEventListener('change', function () {
     var n = osobaSel.value;
     setSlip('slip-osoba', n ? (n === '9' ? '9+' : n) : '');
-    updateHint();
   });
 
   datumInp.addEventListener('change', function () { setSlip('slip-datum', formatDatum(datumInp.value)); });
   vremeSel.addEventListener('change', function () { setSlip('slip-vreme', vremeSel.value); });
 
-  /* ---- Minimalni datum: danas ---- */
   var today = new Date();
   datumInp.min = today.getFullYear() + '-' +
                  String(today.getMonth() + 1).padStart(2, '0') + '-' +
                  String(today.getDate()).padStart(2, '0');
-
-  /* ---- Validacija pre slanja ---- */
-  forma.addEventListener('submit', function () {
-    if (!stoInput.value) stoInput.value = 'Bez izbora — neka salaš predloži';
-  });
-
-  updateHint();
-  showZone('unutra');
 })();
 </script>
 
