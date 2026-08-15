@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="sr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meni| Pajin Salaš</title>
+
+  <link rel="stylesheet" href="stylesheader.css">
+  <link rel="stylesheet" href="styles.css">
+   <link rel="icon" href="logo.png">
+  <style>
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .food-card {
+      text-align: center;
+    }
+
+   .food-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  padding: 10px; /* ovo pravi razmak UNUTRA */
+  background: #fff; /* da se vidi razmak lepo */
+  object-fit: contain;
+}
+
+    .food-card p {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .page-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #6b665c;
+    }
+
+    @media (max-width: 900px) {
+      .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .food-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container header__wrapper">
+
+      <div class="logo">
+        <img src="logo.jpg" alt="Pajin Salaš logo" class="logo__img">
+
+        <div class="logo__text">
+          <div class="logo__title">Pajin Salaš</div>
+          <div class="logo__subtitle">Čenej • Novi Sad</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html">Početna</a>
+        <a href="Meni">Meni</a>
+        <a href="rezervacije.html">Rezerviši</a>
+       <a href="index.html#lokacija">Lokacija</a>
+      </nav>
+
+      <a class="btn-reserve" href="tel:+381641305870">Nazovi</a>
+
+    </div>
+  </header>
+
+  <main>
+
+   
+
+    <section class="section">
+      <div class="container">
+
+        <h2 class="section-title">Doručak</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="hrana/jaje-na-oko.jpg" alt="Jaje na oko">
+            <p>Jaje na oko</p>
+          </div>
+
+          <div class="food-card">
+            <img src="omletsunkasir.jpg" alt="Omlet sa šunkom">
+            <p>Omlet sa šunkom</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/omlet-sa-sirom.jpg" alt="Omlet sa sirom">
+            <p>Omlet sa sirom</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Hladna predjela</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="hrana/domaca-sunka.jpg" alt="Domaća šunka">
+            <p>Domaća šunka</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/kulen.jpg" alt="Kulen">
+            <p>Kulen</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/domaca-kobasica.jpg" alt="Kobasica domaća">
+            <p>Kobasica domaća</p>
+          </div>
+
+          <div class="food-card">
+           <img src="kozijisirsamirodjijom.jpeg" alt="Kozji sir sa mirođijom">
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/kozji-sir-sa-lesnikom.jpg" alt="Kozji sir sa lešnikom">
+            <p>Kozji sir sa lešnikom</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/mladi-kravlji-sir.jpg" alt="Mladi kravlji sir">
+            <p>Mladi kravlji sir</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/kajmak.jpg" alt="Kajmak">
+            <p>Kajmak</p>
+          </div>
+
+          <div class="food-card">
+            <img src="ujkino.jpeg" alt="Ujkino predjelo">
+            <p>Ujkino predjelo</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Kuvana jela</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="gulas.jpeg" alt="Gulaš">
+            <p>Gulaš</p>
+          </div>
+
+            <div class="food-card">
+              <img src="sarmice.jpeg" alt="Sarmcice u zelju">
+              <p>Sarmice u zelju</p>            "
+            </div>
+            
+
+    
+
+          <div class="food-card">
+            <img src="milnic.jpeg" alt="Mućkalica">
+            <p>Mućkalica</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Topla predjela</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="hrana/proja.jpg" alt="Proja">
+            <p>Proja</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/pilece-rolnice.jpg" alt="Pileće rolnice">
+            <p>Pileće rolnice</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/biftek-rolnice.jpg" alt="Biftek rolnice">
+            <p>Biftek rolnice</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/sampinjoni-na-zaru.jpg" alt="Šampinjoni na žaru">
+            <p>Šampinjoni na žaru</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Supe i čorbe</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="domacasupa.jpg" alt="Domaća supa">
+            <p>Domaća supa</p>
+          </div>
+
+          <div class="food-card">
+            <img src="telece.jpeg" alt="Teleća čorba">
+            <p>Teleća čorba</p>
+          </div>
+
+          <div class="food-card">
+            <img src="paradajzcorba.jpg" alt="Paradajz čorba">
+            <p>Paradajz čorba</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Glavna jela</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="butkica1.jpeg" alt="Dimljena butkica u sosu">
+            <p>Dimljena butkica u sosu</p>
+          </div>
+
+
+          <div class="food-card">
+            <img src="telecisac.jpeg" alt="Teleći sač">
+            <p>Teleći sač</p>
+          </div>
+
+          <div class="food-card">
+            <img src="gornoznola.jpg" alt="Ćuretina u gorgonzola sosu">
+            <p>Ćuretina u gorgonzola sosu</p>
+          </div>
+
+          <div class="food-card">
+            <img src="curetinaumlincima.jpeg" alt="Ćuretina sa mlincima">
+            <p>Ćuretina sa mlincima</p>
+          </div>
+
+          <div class="food-card">
+            <img src="pacetina.jpeg" alt="Pačija prsa u sosu">
+            <p>Pačija prsa u sosu</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/butkica-od-mangulice.jpg" alt="Butkica od mangulice">
+            <p>Butkica od mangulice</p>
+          </div>
+
+          <div class="food-card">
+            <img src="salarskivrat.jpg" alt="Salašarski vrat">
+            <p>Salašarski vrat</p>
+          </div>
+
+          <div class="food-card">
+            <img src="dzigerica.jpeg" alt="Pileća džigerica">
+            <p>Pileća džigerica</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/prebranac-sa-kobasicom.jpg" alt="Prebranac sa kobasicom">
+            <p>Prebranac sa kobasicom</p>
+          </div>
+
+          <div class="food-card">
+            <img src="svinjski.jpeg" alt="svinjski-jastucici">
+            <p>Svinjski jastučići</p>
+          </div>
+
+          <div class="food-card">
+            <img src="pilecijastuci.jpg" alt="Pileći jastučići">
+            <p>Pileći jastučići</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Roštilj</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="cevap.jpeg" alt="Ćevapi">
+            <p>Ćevapi</p>
+          </div>
+
+          <div class="food-card">
+            <img src="piletina.JPG" alt="Pileće belo meso">
+            <p>Pileće belo meso</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/rolovani-pileci-raznjici.jpg" alt="Rolovani pileći ražnjići">
+            <p>Rolovani pileći ražnjići</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/pileci-batak.jpg" alt="Pileći batak">
+            <p>Pileći batak</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/rostilj-kobasica.jpg" alt="Roštilj kobasica">
+            <p>Roštilj kobasica</p>
+          </div>
+
+          <div class="food-card">
+            <img src="ustipci.jpeg" alt="Uštipci">
+            <p>Uštipci</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/biftek.jpg" alt="Biftek">
+            <p>Biftek</p>
+          </div>
+
+          <div class="food-card">
+            <img src="rebarca.jpeg" alt="Rebarca">
+            <p>Rebarca</p>
+          </div>
+
+
+          <div class="food-card">
+            <img src="vrat.jpg" alt="Vrat sa žara">
+            <p>Vrat sa žara</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/dimljena-vesalica.jpg" alt="Dimljena vešalica">
+            <p>Dimljena vešalica</p>
+          </div>
+
+          <div class="food-card">
+            <img src="pastrmka.jpeg" alt="Dimljena pastrmka">
+            <p>Dimljena pastrmka</p>
+          </div>
+
+          <div class="food-card">
+            <img src="lignje.jpeg" alt="Lignje">
+            <p>Lignje</p>
+          </div>
+
+          <div class="food-card">
+            <img src="dimljenisaran.jpeg" alt="Dimljeni šaran">
+            <p>Dimljeni šaran</p>
+          </div>
+        </div>
+
+       
+        <h2 class="section-title">Salate</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="zelenasa.jpeg" alt="Sveža sezonska salata">
+            <p>Sveža sezonska salata</p>
+          </div>
+
+          <div class="food-card">
+            <img src="paradajizsir.jpg" alt="Paradajz sa sirom">
+            <p>Paradajz sa sirom</p>
+          </div>
+
+          <div class="food-card">
+            <img src="sopska.JPG" alt="Šopska salata">
+            <p>Šopska salata</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/spanac-salata.jpg" alt="Spanać salata">
+            <p>Spanać salata</p>
+          </div>
+
+          <div class="food-card">
+            <img src="srpska.jpeg" alt="Srpska salata">
+            <p>Srpska salata</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/vitaminska-salata.jpg" alt="Vitaminska salata">
+            <p>Vitaminska salata</p>
+          </div>
+
+          <div class="food-card">
+            <img src="papirka.jpeg" alt="Pečena paprika">
+            <p>Pečena paprika</p>
+          </div>
+
+          <div class="food-card">
+            <img src="papirk" alt="Pečena ljuta">
+            <p>Pečena ljuta</p>
+          </div>
+
+          <div class="food-card">
+            <img src="hrana/kiseli-kupus.jpg" alt="Kiseli kupus">
+            <p>Kiseli kupus</p>
+          </div>
+
+
+          
+          <div class="food-card">
+            <img src="hrana/sveza-ljuta.jpg" alt="Sveža ljuta">
+            <p>Sveža ljuta</p>
+          </div>
+
+          <div class="food-card">
+            <img src="moravskasalata.jpg" alt="Moravska salata">
+            <p>Moravska salata</p>
+          </div>
+        </div>
+
+        
+
+        <h2 class="section-title">Dezerti</h2>
+        <div class="food-grid">
+          <div class="food-card">
+            <img src="baklava.jpg" alt="Baklava sa orasima">
+            <p>Baklava sa orasima</p>
+          </div>
+
+          <div class="food-card">
+            <img src="krempita.jpg" alt="Krempita">
+            <p>Krempita</p>
+          </div>
+
+          <div class="food-card">
+            <img src="jafa.jpg" alt="Jafa kolač">
+            <p>Jafa kolač</p>
+          </div>
+
+          <div class="food-card">
+            <img src="snenokle.jpeg" alt="Šnenokle">
+            <p>Šnenokle</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+ <footer class="footer">
+    <div class="container footer__inner">
+
+      
+      <div class="footer-col">
+        <h4>Pajin Salaš</h4>
+        <p>Čenej • Novi Sad</p>
+        <p>Tradicionalni salaš od 1946.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>064-1305870</p>
+        <p>063 719 6866</p>
+        <p>Međunarodni put 325</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Radno vreme</h4>
+        <p>Ponedeljak – Nedelja</p>
+        <p>09:00 – 23:00</p>
+
+        <div class="footer-social">
+          <a href="https://www.instagram.com/pajinsalas/" target="_blank">Instagram</a>
+          <a href="https://www.facebook.com/pajinsalas" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Pajin Salaš. Sva prava zadržana.
+    </div>
+  </footer>
+
+</body>
+</html>

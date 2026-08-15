@@ -1,0 +1,174 @@
+:root{
+  --primary:#2F4F36;
+  --secondary:#c29a4b;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  background:#1b2f27;
+  color:#fff;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
+}
+
+.header__wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:16px 0;
+}
+
+/* ================= LOGO ================= */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo__img{
+  width:40px;
+  height:40px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid var(--secondary);
+}
+
+.logo__title{
+  font-size:18px;
+  font-weight:700;
+  margin:0;
+}
+
+.logo__subtitle{
+  font-size:12px;
+  color:#cfc8bb;
+  margin-top:2px;
+}
+
+/* ================= NAV ================= */
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:#fff;
+  font-weight:600;
+  position:relative;
+  transition:color .3s ease;
+}
+
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--secondary);
+  transition:width .3s ease;
+}
+
+.nav a:hover{
+  color:var(--secondary);
+}
+
+.nav a:hover::after{
+  width:100%;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-reserve{
+  background:var(--secondary);
+  padding:11px 22px;
+  border-radius:40px;
+  color:#1a140f;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn-reserve:hover{
+  background:#d8b56a;
+  transform:translateY(-2px);
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width:1024px){
+
+  .header__wrapper{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .nav{
+    gap:16px;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .header__wrapper{
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+
+  .logo{
+    justify-content:center;
+    text-align:center;
+  }
+
+  .nav{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+
+  .nav a{
+    font-size:14px;
+  }
+
+  .btn-reserve{
+    width:200px;
+    text-align:center;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width:480px){
+
+  .logo__img{
+    width:34px;
+    height:34px;
+  }
+
+  .logo__title{
+    font-size:16px;
+  }
+
+  .logo__subtitle{
+    font-size:11px;
+  }
+
+  .nav a{
+    font-size:13px;
+  }
+
+  .btn-reserve{
+    width:100%;
+  }
+
+}

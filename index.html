@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pajin Salaš | Čenej</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stylesheader.css">
+  <link rel="stylesheet" href="styleshero.css">
+  <link rel="icon" href="logo.jpg">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__wrapper">
+
+      <div class="logo">
+        <img src="logo.jpg" alt="Pajin Salaš logo" class="logo__img">
+        <div>
+          <div class="logo__title">Pajin Salaš</div>
+          <div class="logo__subtitle">Čenej • Novi Sad</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#o-nama">Utisci</a>
+        <a href="rezervacije.html">Rezerviši</a>
+        <a href="galerija.html">Meni</a>
+        <a href="#lokacija">Lokacija</a>
+      </nav>
+
+      <a class="btn-reserve" href="tel:+381641305870">
+        <b>Nazovi</b>
+      </a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1 style="text-align:center;">Pajin Salaš</h1>
+        <p style="text-align:center;">
+          Autentičan vojvođanski ambijent, domaća kuhinja i tamburaši.
+        </p>
+      </div>
+
+      <img
+        
+        src="1.jpg"
+       
+        style="width: 100%; max-width: 900px; height: 500px; object-fit: cover; display: block; margin: 0 auto;"
+      >
+    </section>
+
+    <section id="o-nama" class="section reviews-block">
+      <div class="container">
+
+        <h2 style="text-align:center;">Utisci gostiju</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto 30px; color:#6b665c;">
+          Iskustva naših gostiju govore najbolje o atmosferi, usluzi i ukusu koji Pajin Salaš nudi.
+        </p>
+
+        <div class="review-slider">
+          <button class="review-btn prev">&#10094;</button>
+
+          <div class="review-container">
+            <img id="reviewSlider" src="IMG_1333.jpg" alt="Recenzija gostiju za Pajin Salaš">
+          </div>
+
+          <button class="review-btn next">&#10095;</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="lokacija" class="location-section">
+      <div class="container location-grid">
+
+        <div class="location-info">
+          <h2>Lokacija i kontakt</h2>
+
+          <p>
+            <strong>Adresa:</strong><br>
+            Međunarodni put 325<br>
+            Čenej, Novi Sad
+          </p>
+
+          <p>
+            <strong>Telefon:</strong><br>
+            064-1305870<br>
+            063 719 6866
+          </p>
+
+          <p>
+            <strong>Radno vreme:</strong><br>
+            Ponedeljak – Nedelja<br>
+            09:00 – 23:00
+          </p>
+
+          <a
+            class="btn btn--primary"
+            href="https://www.google.com/maps?q=Međunarodni+put+325+Čenej"
+            target="_blank"
+          >
+            Otvori u Google Maps
+          </a>
+        </div>
+
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps?q=Međunarodni+put+325+Čenej&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            loading="lazy">
+          </iframe>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <div class="footer-col">
+        <h4>Pajin Salaš</h4>
+        <p>Čenej • Novi Sad</p>
+        <p>Tradicionalni salaš od 1946.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <p>064-1305870</p>
+        <p>063 719 6866</p>
+        <p>Međunarodni put 325</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Radno vreme</h4>
+        <p>Ponedeljak – Nedelja</p>
+        <p>09:00 – 23:00</p>
+
+        <div class="footer-social">
+          <a href="https://www.instagram.com/pajinsalas/" target="_blank">Instagram</a>
+          <a href="https://www.facebook.com/pajinsalas" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Pajin Salaš. Sva prava zadržana.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroImg = document.getElementById("heroSlider");
+      if (!heroImg) return;
+
+      const heroImages = [
+        "1.jpg",
+        "2.jpeg",
+        "3.jpeg",
+        "4.jpeg",
+        "5.jpeg"
+      ];
+
+      let currentHero = 0;
+
+      setInterval(() => {
+        currentHero = (currentHero + 1) % heroImages.length;
+        heroImg.src = heroImages[currentHero];
+      }, 5000);
+    });
+  </script>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
